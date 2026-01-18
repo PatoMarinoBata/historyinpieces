@@ -1,0 +1,55 @@
+{
+  "name": "historical-collectibles",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@premieroctet/next-admin": "^8.4.2",
+    "@premieroctet/next-crud": "^4.0.1",
+    "@prisma/adapter-neon": "^7.2.0",
+    "@prisma/client": "5.22.0",
+    "@prisma/extension-accelerate": "^3.0.1",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@refinedev/antd": "^6.0.3",
+    "@refinedev/core": "^5.0.8",
+    "@refinedev/inferencer": "^6.0.2",
+    "@refinedev/react-hook-form": "^5.0.3",
+    "@refinedev/react-router-v6": "^4.6.2",
+    "@refinedev/simple-rest": "^6.0.1",
+    "@tanstack/react-query": "^5.90.16",
+    "@uploadthing/react": "^7.3.3",
+    "antd": "^5.29.3",
+    "bcryptjs": "^3.0.3",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.1",
+    "next-auth": "^5.0.0-beta.30",
+    "prisma": "5.22.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "uploadthing": "^7.7.4",
+    "zod": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10",
+    "dotenv-cli": "^11.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "postcss": "^8",
+    "tailwindcss": "^3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}
