@@ -8,6 +8,7 @@ export default function EditForm({ piece }: { piece: any }) {
   const [description, setDescription] = useState(piece.description || "");
   const [history, setHistory] = useState(piece.history || "");
   const [images, setImages] = useState((piece.images || []).join(", "));
+  const [category, setCategory] = useState<string>(piece.category ?? "OTHER");
   const [lastSoldPrice, setLastSoldPrice] = useState<string>(piece.lastSoldPrice ?? "");
   const [lastSoldDate, setLastSoldDate] = useState<string>(piece.lastSoldDate ? new Date(piece.lastSoldDate).toISOString().slice(0, 10) : "");
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ export default function EditForm({ piece }: { piece: any }) {
         images,
         lastSoldPrice: lastSoldPrice ? Number(lastSoldPrice) : null,
         lastSoldDate: lastSoldDate || null,
+        category,
       }),
     });
     setLoading(false);
@@ -47,6 +49,17 @@ export default function EditForm({ piece }: { piece: any }) {
 
   return (
     <form onSubmit={submit} className="max-w-2xl space-y-4">
+      <div>
+        <label className="mb-1 block">Category</label>
+        <select className="w-full rounded border border-slate-700 bg-slate-800 p-2" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="PAINTING">Painting</option>
+          <option value="CAR">Car</option>
+          <option value="STATUE">Statue</option>
+          <option value="COLLECTIBLE">Collectible</option>
+          <option value="DOCUMENT">Document</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
       <div>
         <label className="mb-1 block">Title</label>
         <input className="w-full rounded border border-slate-700 bg-slate-800 p-2" value={title} onChange={(e) => setTitle(e.target.value)} required />

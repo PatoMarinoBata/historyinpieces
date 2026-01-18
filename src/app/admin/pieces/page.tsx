@@ -28,6 +28,7 @@ export default async function AdminPiecesPage() {
           <thead className="bg-slate-800">
             <tr>
               <th className="p-3 text-left">Title</th>
+              <th className="p-3 text-left">Category</th>
               <th className="p-3 text-left">Updated</th>
               <th className="p-3 text-left">Actions</th>
             </tr>
@@ -36,6 +37,7 @@ export default async function AdminPiecesPage() {
             {pieces.map((p) => (
               <tr key={p.id} className="border-t border-slate-800">
                 <td className="p-3">{p.title}</td>
+                <td className="p-3">{p.category}</td>
                 <td className="p-3">{new Date(p.updatedAt).toLocaleString()}</td>
                 <td className="p-3 space-x-2">
                   <Link href={`/admin/pieces/${p.id}`} className="rounded bg-slate-700 px-3 py-1 hover:bg-slate-600">Edit</Link>

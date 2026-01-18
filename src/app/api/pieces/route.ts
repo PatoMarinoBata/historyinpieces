@@ -19,6 +19,8 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
+    const category = typeof body.category === "string" ? body.category.toUpperCase() : undefined;
+    const allowed = ["PAINTING", "CAR", "STATUE", "COLLECTIBLE", "DOCUMENT", "OTHER"];
     const piece = await prisma.piece.create({
       data: {
         title: body.title,
@@ -32,6 +34,7 @@ export async function POST(req: Request) {
         transactionHistory: body.transactionHistory ?? null,
         lastSoldPrice: body.lastSoldPrice ?? null,
         lastSoldDate: body.lastSoldDate ? new Date(body.lastSoldDate) : null,
+        category: allowed.includes(category ?? "") ? (category as any) : "OTHER",
       },
     });
     return NextResponse.json(piece, { status: 201 });

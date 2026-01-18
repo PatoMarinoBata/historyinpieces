@@ -17,7 +17,10 @@ export default async function PublicPiecesPage() {
                 <div className="flex h-full items-center justify-center text-slate-300">No image</div>
               )}
             </div>
-            <h2 className="text-xl font-semibold">{p.title}</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">{p.title}</h2>
+              <span className="rounded bg-slate-700 px-2 py-1 text-xs uppercase">{(p as any).category ?? 'OTHER'}</span>
+            </div>
             {p.description && <p className="mt-1 text-sm text-slate-400 line-clamp-2">{p.description}</p>}
           </Link>
         ))}

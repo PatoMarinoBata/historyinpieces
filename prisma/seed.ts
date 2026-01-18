@@ -36,6 +36,7 @@ async function main() {
         description: "A portrait by Leonardo da Vinci.",
         history: "Painted between 1503 and 1506.",
         images: ["https://upload.wikimedia.org/wikipedia/commons/6/6a/Mona_Lisa.jpg"],
+        category: "PAINTING",
         transactionHistory: [
           { date: "1517-01-01", owner: "King Francis I" },
           { date: "1797-01-01", owner: "Louvre Museum" }

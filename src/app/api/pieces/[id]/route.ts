@@ -19,6 +19,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   }
   try {
     const body = await req.json();
+    const category = typeof body.category === "string" ? body.category.toUpperCase() : undefined;
+    const allowed = ["PAINTING", "CAR", "STATUE", "COLLECTIBLE", "DOCUMENT", "OTHER"];
     const piece = await prisma.piece.update({
       where: { id: params.id },
       data: {
@@ -33,6 +35,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         transactionHistory: body.transactionHistory ?? null,
         lastSoldPrice: body.lastSoldPrice ?? null,
         lastSoldDate: body.lastSoldDate ? new Date(body.lastSoldDate) : null,
+        category: allowed.includes(category ?? "") ? (category as any) : undefined,
       },
     });
     return NextResponse.json(piece);

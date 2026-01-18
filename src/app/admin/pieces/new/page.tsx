@@ -8,6 +8,7 @@ export default function NewPiecePage() {
   const [description, setDescription] = useState("");
   const [history, setHistory] = useState("");
   const [images, setImages] = useState("");
+  const [category, setCategory] = useState("OTHER");
   const [lastSoldPrice, setLastSoldPrice] = useState<string>("");
   const [lastSoldDate, setLastSoldDate] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ export default function NewPiecePage() {
         images,
         lastSoldPrice: lastSoldPrice ? Number(lastSoldPrice) : null,
         lastSoldDate: lastSoldDate || null,
+        category,
       }),
     });
     setLoading(false);
@@ -39,6 +41,17 @@ export default function NewPiecePage() {
     <div className="min-h-screen bg-slate-900 text-slate-100 p-8">
       <h1 className="mb-6 text-3xl font-bold">New Piece</h1>
       <form onSubmit={submit} className="max-w-2xl space-y-4">
+        <div>
+          <label className="mb-1 block">Category</label>
+          <select className="w-full rounded border border-slate-700 bg-slate-800 p-2" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="PAINTING">Painting</option>
+            <option value="CAR">Car</option>
+            <option value="STATUE">Statue</option>
+            <option value="COLLECTIBLE">Collectible</option>
+            <option value="DOCUMENT">Document</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
         <div>
           <label className="mb-1 block">Title</label>
           <input className="w-full rounded border border-slate-700 bg-slate-800 p-2" value={title} onChange={(e) => setTitle(e.target.value)} required />

@@ -18,6 +18,15 @@ enum Role {
   USER
 }
 
+enum Category {
+  PAINTING
+  CAR
+  STATUE
+  COLLECTIBLE
+  DOCUMENT
+  OTHER
+}
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -37,6 +46,7 @@ model Piece {
   transactionHistory  Json?     // Array of objects: [{ date: "2023-01-01", price: 1000000, owner: "Museum X" }, ...]
   lastSoldPrice       Float?
   lastSoldDate        DateTime?
+  category            Category  @default(OTHER)
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 }

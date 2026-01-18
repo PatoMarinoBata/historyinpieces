@@ -9,7 +9,10 @@ export default async function PublicPieceDetail({ params }: { params: Promise<{ 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 p-8">
       <div className="mx-auto max-w-4xl">
-        <h1 className="mb-4 text-3xl font-bold">{piece.title}</h1>
+        <div className="mb-4 flex items-center justify-between">
+          <h1 className="text-3xl font-bold">{piece.title}</h1>
+          <span className="rounded bg-slate-700 px-2 py-1 text-xs uppercase">{(piece as any).category ?? 'OTHER'}</span>
+        </div>
         <div className="mb-6 grid grid-cols-2 gap-3">
           {piece.images && piece.images.length > 0 ? (
             piece.images.map((src, i) => (
