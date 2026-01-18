@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import EditForm from "./EditForm";
 
-export default async function EditPiecePage({ params }: { params: { id: string } }) {
+export default async function EditPiecePage({ params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session) redirect("/auth/signin");
   if ((session.user as any)?.role !== "ADMIN") {
@@ -14,7 +14,8 @@ export default async function EditPiecePage({ params }: { params: { id: string }
     );
   }
 
-  const piece = await prisma.piece.findUnique({ where: { id: params.id } });
+  const resolvedParams = await params;
+  const piece = await prisma.piece.findUnique({ where: { id: resolvedParams.id } });
   if (!piece) {
     return (
       <div className="min-h-screen bg-slate-900 p-8 text-slate-100">

@@ -1,7 +1,8 @@
 import { prisma } from "@/lib/prisma";
 
-export default async function PublicPieceDetail({ params }: { params: { id: string } }) {
-  const piece = await prisma.piece.findUnique({ where: { id: params.id } });
+export default async function PublicPieceDetail({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const piece = await prisma.piece.findUnique({ where: { id: resolvedParams.id } });
   if (!piece) {
     return <div className="min-h-screen bg-slate-900 p-8 text-slate-100">Not found</div>;
   }
