@@ -10,12 +10,10 @@ export default function Home() {
         <p className="text-xl text-slate-400 mb-8">
           Discover and manage your collection
         </p>
-        <a
-          href="/admin"
-          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-        >
-          Access Admin Panel
-        </a>
+        <div className="flex items-center justify-center gap-4">
+          <a href="/pieces" className="inline-block bg-slate-800 text-slate-100 px-6 py-3 rounded-lg border border-slate-700 hover:bg-slate-700 transition">Browse Pieces</a>
+          <a href="/admin" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Admin Panel</a>
+        </div>
       </div>
     </div>
   );
