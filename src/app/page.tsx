@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import Link from "next/link";
 
 type Piece = {
@@ -16,6 +16,12 @@ export default function Home() {
   const [pieces, setPieces] = useState<Piece[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [animationKey, setAnimationKey] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<"ltr" | "rtl">("ltr");
+  const [slideMode, setSlideMode] = useState<"auto" | "manual">("auto");
+  const dragStartX = useRef<number | null>(null);
+  const isDragging = useRef(false);
+  const hasSwiped = useRef(false);
 
   useEffect(() => {
     fetch("/api/pieces")
@@ -26,20 +32,69 @@ export default function Home() {
       });
   }, []);
 
+  const advance = useCallback(
+    (direction: 1 | -1, animation: "ltr" | "rtl", mode: "auto" | "manual") => {
+      if (pieces.length === 0) return;
+      setSlideDirection(animation);
+      setSlideMode(mode);
+      setCurrentIndex((prev) => (prev + direction + pieces.length) % pieces.length);
+      setAnimationKey((prev) => prev + 1);
+    },
+    [pieces.length]
+  );
+
   useEffect(() => {
     if (pieces.length === 0) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % pieces.length);
+    const timeout = setTimeout(() => {
+      advance(1, "ltr", "auto");
     }, 8000);
-    return () => clearInterval(interval);
-  }, [pieces.length]);
+    return () => clearTimeout(timeout);
+  }, [pieces.length, currentIndex, advance]);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + pieces.length) % pieces.length);
+    advance(-1, "rtl", "manual");
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % pieces.length);
+    advance(1, "ltr", "manual");
+  };
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (pieces.length <= 1) return;
+    isDragging.current = true;
+    hasSwiped.current = false;
+    dragStartX.current = event.clientX;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || dragStartX.current === null || hasSwiped.current) return;
+    const deltaX = event.clientX - dragStartX.current;
+    const threshold = 40;
+    if (Math.abs(deltaX) >= threshold) {
+      if (deltaX > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+      hasSwiped.current = true;
+    }
+  };
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    dragStartX.current = null;
+    hasSwiped.current = false;
+    event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+
+  const handlePointerLeave = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    dragStartX.current = null;
+    hasSwiped.current = false;
+    event.currentTarget.releasePointerCapture(event.pointerId);
   };
 
   const getPieceAtIndex = (index: number) => pieces[index % pieces.length];
@@ -66,39 +121,46 @@ export default function Home() {
       {/* Content layer */}
       <div className="relative z-10">
         {/* Header */}
-        <div className="text-center pt-12 pb-8">
-          <h1 className="text-5xl font-bold text-slate-100 mb-2 drop-shadow-lg">
+        <div className="text-center pt-6 pb-3">
+          <h1 className="text-4xl md:text-5xl font-semibold text-slate-100 mb-1 drop-shadow-lg font-serif tracking-wide">
             History in Pieces
           </h1>
-          <p className="text-lg text-slate-400">Explore the world's most storied collectibles</p>
+          <p className="text-sm md:text-base text-slate-400 italic">Explore the world's most storied collectibles</p>
         </div>
 
       {/* Carousel Container - Instagram Stories Style */}
-      <div className="relative max-w-7xl mx-auto px-4 py-12">
+      <div className="relative max-w-6xl mx-auto px-4 py-4">
         {loading ? (
-          <div className="h-96 flex items-center justify-center text-slate-400">
+          <div className="h-80 flex items-center justify-center text-slate-400">
             <p>Loading featured pieces...</p>
           </div>
         ) : (
           <>
             {/* Carousel Images - 3 Items Layout */}
-            <div className="relative h-[440px] flex items-center justify-center gap-4 mb-6 overflow-hidden">
+            <div
+              className="relative h-[360px] flex items-center justify-center gap-3 mb-3 overflow-hidden touch-pan-y"
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerLeave={handlePointerLeave}
+              onPointerCancel={handlePointerLeave}
+            >
               {/* Previous Item (Left, smaller) */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-20 h-28 opacity-55 scale-75 transition-all duration-300 z-0">
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 w-16 h-24 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
                 <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
                   {prev?.images?.[0] && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={prev.images[0]}
                       alt={prev.title}
-                      className="w-full h-full object-contain bg-slate-900"
+                      className="w-full h-full object-contain bg-slate-900 transition-opacity duration-500"
                     />
                   )}
                 </div>
               </div>
 
               {/* Current Item (Center, large) */}
-              <div className="relative z-10 w-80 transition-all duration-300">
+              <div key={`${current?.id ?? currentIndex}-${animationKey}`} className={`relative z-10 w-72 slide-cycle ${slideDirection} ${slideMode}`}>
                 <div className="w-full bg-slate-800 rounded-xl overflow-hidden border-2 border-amber-600 shadow-2xl">
                   <div className="relative bg-slate-900 flex items-center justify-center p-4">
                     {current?.images?.[0] && (
@@ -106,36 +168,22 @@ export default function Home() {
                       <img
                         src={current.images[0]}
                         alt={current.title}
-                        className="w-auto h-auto max-w-full max-h-80 object-contain"
+                        className="w-auto h-auto max-w-full max-h-64 object-contain"
                       />
                     )}
                   </div>
                 </div>
-
-                {/* Progress indicator below image */}
-                <div className="mt-4 flex gap-1 justify-center">
-                  {pieces.map((_, idx) => (
-                    <div
-                      key={idx}
-                      className={`h-1 transition-all ${
-                        idx === currentIndex
-                          ? "w-8 bg-amber-500"
-                          : "w-2 bg-slate-600"
-                      }`}
-                    />
-                  ))}
-                </div>
               </div>
 
               {/* Next Item (Right, smaller) */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-20 h-28 opacity-55 scale-75 transition-all duration-300 z-0">
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-24 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
                 <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
                   {next?.images?.[0] && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={next.images[0]}
                       alt={next.title}
-                      className="w-full h-full object-contain bg-slate-900"
+                      className="w-full h-full object-contain bg-slate-900 transition-opacity duration-500"
                     />
                   )}
                 </div>
@@ -161,31 +209,31 @@ export default function Home() {
             </div>
 
             {/* Info Section */}
-            <div className="max-w-2xl mx-auto bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-8 shadow-lg">
+            <div className="max-w-xl mx-auto bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg transition-all duration-500">
               <div className="mb-3">
                 <span className="inline-block bg-slate-700 text-amber-200 px-3 py-1 rounded-full text-sm font-semibold">
                   {current?.category || "OTHER"}
                 </span>
               </div>
 
-              <h2 className="text-4xl font-bold mb-4 text-slate-100">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
                 {current?.title}
               </h2>
 
-              <p className="text-slate-300 mb-6 text-lg leading-relaxed max-h-24 overflow-y-auto">
+              <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
                 {current?.description}
               </p>
 
               {current?.lastSoldPrice && (
-                <div className="mb-6 p-4 bg-slate-700 rounded-lg border border-slate-600">
-                  <p className="text-slate-400 text-sm">Last Sale Price</p>
-                  <p className="text-2xl font-bold text-amber-300">
+                <div className="mb-4 p-3 bg-slate-700 rounded-lg border border-slate-600">
+                  <p className="text-slate-400 text-xs">Last Sale Price</p>
+                  <p className="text-xl font-bold text-amber-300">
                     ${current.lastSoldPrice.toLocaleString()}
                   </p>
                 </div>
               )}
 
-              <p className="text-slate-400 text-sm mb-6 max-h-20 overflow-y-auto leading-relaxed">
+              <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
                 <strong className="text-slate-300">History:</strong> {current?.history}
               </p>
 
@@ -217,6 +265,31 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      <style jsx>{`
+        .slide-cycle.ltr.manual {
+          animation: slideInLtr 0.6s ease-in-out both;
+        }
+        .slide-cycle.rtl.manual {
+          animation: slideInRtl 0.6s ease-in-out both;
+        }
+        .slide-cycle.ltr.auto {
+          animation: slideCycleLtr 8s ease-in-out both;
+        }
+        @keyframes slideInLtr {
+          0% { opacity: 0; transform: translateX(-48px); }
+          100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRtl {
+          0% { opacity: 0; transform: translateX(48px); }
+          100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideCycleLtr {
+          0% { opacity: 0; transform: translateX(-48px); }
+          18% { opacity: 1; transform: translateX(0); }
+          72% { opacity: 1; transform: translateX(0); }
+          100% { opacity: 0; transform: translateX(48px); }
+        }
+      `}</style>
       </div>
     </div>
   );
