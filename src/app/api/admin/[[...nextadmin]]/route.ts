@@ -1,4 +1,4 @@
-import { createHandler } from "@premieroctet/next-admin/appRouter";
+import { createHandler } from "@premieroctet/next-admin/appHandler";
 import { prisma } from "@/lib/prisma";
 import { options } from "@/options";
 
