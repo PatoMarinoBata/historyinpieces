@@ -1,0 +1,6 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1e293b"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="36" fill="#f1f5f9" text-anchor="middle" font-weight="bold">Mona Lisa</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle">Leonardo da Vinci (1503-1519)</text>
+  <circle cx="400" cy="450" r="80" fill="#8b5a2b" opacity="0.3"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f59e0b"/>
+  <text x="400" y="260" font-family="Arial, sans-serif" font-size="32" fill="#000000" text-anchor="middle" font-weight="bold">Honus Wagner T206</text>
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="24" fill="#451a03" text-anchor="middle">Baseball Card (1909)</text>
+  <rect x="300" y="360" width="200" height="140" rx="10" fill="#ffffff" opacity="0.3"/>
+  <circle cx="400" cy="430" r="40" fill="#ef4444" opacity="0.4"/>
+</svg>

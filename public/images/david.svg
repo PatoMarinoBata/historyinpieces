@@ -1,0 +1,6 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1e293b"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="36" fill="#f1f5f9" text-anchor="middle" font-weight="bold">David</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle">Michelangelo (1501-1504)</text>
+  <ellipse cx="400" cy="450" rx="60" ry="100" fill="#d4d4d8" opacity="0.3"/>
+</svg>

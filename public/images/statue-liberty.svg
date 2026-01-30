@@ -1,0 +1,7 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1e293b"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="36" fill="#f1f5f9" text-anchor="middle" font-weight="bold">Statue of Liberty</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle">Bartholdi (1886)</text>
+  <polygon points="400,380 380,500 420,500" fill="#22c55e" opacity="0.3"/>
+  <circle cx="400" cy="360" r="20" fill="#fbbf24" opacity="0.5"/>
+</svg>

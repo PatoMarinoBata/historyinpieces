@@ -1,0 +1,7 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f59e0b"/>
+  <text x="400" y="260" font-family="Arial, sans-serif" font-size="36" fill="#000000" text-anchor="middle" font-weight="bold">Action Comics #1</text>
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="24" fill="#451a03" text-anchor="middle">Superman's First Appearance (1938)</text>
+  <rect x="300" y="360" width="200" height="140" rx="10" fill="#dc2626" opacity="0.5"/>
+  <text x="400" y="445" font-family="Arial, sans-serif" font-size="48" fill="#3b82f6" text-anchor="middle" font-weight="bold">S</text>
+</svg>

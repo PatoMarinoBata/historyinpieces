@@ -1,0 +1,7 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#3b82f6"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" font-weight="bold">Hope Diamond</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="24" fill="#dbeafe" text-anchor="middle">45.52 Carats - Deep Blue</text>
+  <polygon points="400,380 450,430 400,500 350,430" fill="#1e3a8a" opacity="0.5"/>
+  <polygon points="400,380 420,410 400,440 380,410" fill="#60a5fa" opacity="0.7"/>
+</svg>

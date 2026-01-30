@@ -1,0 +1,8 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1e293b"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="36" fill="#f1f5f9" text-anchor="middle" font-weight="bold">The Starry Night</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle">Vincent van Gogh (1889)</text>
+  <circle cx="300" cy="450" r="30" fill="#fbbf24" opacity="0.5"/>
+  <circle cx="450" cy="420" r="35" fill="#fbbf24" opacity="0.5"/>
+  <circle cx="550" cy="470" r="25" fill="#fbbf24" opacity="0.5"/>
+</svg>
