@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/app/api/auth/[...nextauth]/route";
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const piece = await prisma.piece.findUnique({ where: { id: params.id } });
+    const resolvedParams = await params;
+    const piece = await prisma.piece.findUnique({ where: { id: resolvedParams.id } });
     if (!piece) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(piece);
   } catch (e) {
@@ -12,17 +13,18 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
   }
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session || (session.user as any)?.role !== "ADMIN") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
+    const resolvedParams = await params;
     const body = await req.json();
     const category = typeof body.category === "string" ? body.category.toUpperCase() : undefined;
     const allowed = ["PAINTING", "CAR", "STATUE", "COLLECTIBLE", "DOCUMENT", "OTHER"];
     const piece = await prisma.piece.update({
-      where: { id: params.id },
+      where: { id: resolvedParams.id },
       data: {
         title: body.title,
         description: body.description ?? null,
@@ -44,13 +46,14 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
   }
 }
 
-export async function DELETE(_req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   if (!session || (session.user as any)?.role !== "ADMIN") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
-    await prisma.piece.delete({ where: { id: params.id } });
+    const resolvedParams = await params;
+    await prisma.piece.delete({ where: { id: resolvedParams.id } });
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json({ error: "Failed to delete piece" }, { status: 500 });
