@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import PieceImageGallery from "./PieceImageGallery";
 
 export default async function PublicPieceDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -13,16 +14,7 @@ export default async function PublicPieceDetail({ params }: { params: Promise<{ 
           <h1 className="text-3xl font-bold">{piece.title}</h1>
           <span className="rounded bg-slate-700 px-2 py-1 text-xs uppercase">{(piece as any).category ?? 'OTHER'}</span>
         </div>
-        <div className="mb-6 grid grid-cols-2 gap-3">
-          {piece.images && piece.images.length > 0 ? (
-            piece.images.map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={src} alt={`${piece.title} image ${i + 1}`} className="h-48 w-full rounded object-cover" />
-            ))
-          ) : (
-            <div className="rounded bg-slate-800 p-6 text-slate-300">No images</div>
-          )}
-        </div>
+        <PieceImageGallery images={piece.images ?? []} title={piece.title} />
         {piece.description && <p className="mb-6 text-slate-300">{piece.description}</p>}
         {piece.history && (
           <div>

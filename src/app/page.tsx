@@ -161,7 +161,7 @@ export default function Home() {
 
               {/* Current Item (Center, large) */}
               <div key={`${current?.id ?? currentIndex}-${animationKey}`} className={`relative z-10 w-72 slide-cycle ${slideDirection} ${slideMode}`}>
-                <div className="w-full bg-slate-800 rounded-xl overflow-hidden border-2 border-amber-600 shadow-2xl">
+                <div className="w-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
                   <div className="relative bg-slate-900 flex items-center justify-center p-4">
                     {current?.images?.[0] && (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -210,12 +210,6 @@ export default function Home() {
 
             {/* Info Section */}
             <div className="max-w-xl mx-auto bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg transition-all duration-500">
-              <div className="mb-3">
-                <span className="inline-block bg-slate-700 text-amber-200 px-3 py-1 rounded-full text-sm font-semibold">
-                  {current?.category || "OTHER"}
-                </span>
-              </div>
-
               <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
                 {current?.title}
               </h2>

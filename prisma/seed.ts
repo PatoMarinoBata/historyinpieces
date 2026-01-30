@@ -34,7 +34,7 @@ async function main() {
         title: "Mona Lisa",
         description: "A portrait by Leonardo da Vinci, arguably the most famous painting in the world.",
         history: "Painted between 1503 and 1506. Acquired by King Francis I and later moved to the Louvre.",
-        images: ["/images/mona-lisa.jpg"],
+        images: ["/images/mona-lisa.jpg", "/images/monalisa2.jpg", "/images/monalisa3.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1517-01-01", owner: "King Francis I of France" },
