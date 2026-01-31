@@ -255,34 +255,65 @@ export default function Home() {
             </div>
 
             {/* Info Section */}
-            <div className="max-w-xl mx-auto bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg transition-all duration-500">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
-                {current?.title}
-              </h2>
-
-              <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
-                {current?.description}
-              </p>
-
-              {current?.lastSoldPrice && (
-                <div className="mb-4 p-3 bg-slate-700 rounded-lg border border-slate-600">
-                  <p className="text-slate-400 text-xs">Last Sale Price</p>
-                  <p className="text-xl font-bold text-amber-300">
-                    ${current.lastSoldPrice.toLocaleString()}
-                  </p>
+            <div className="relative max-w-xl mx-auto">
+              {/* Exit animation layer for description */}
+              {isTransitioning && slideMode === "manual" && (
+                <div
+                  key={`desc-exit-${previousIndex}`}
+                  className={`absolute inset-0 desc-exit ${slideDirection}`}
+                >
+                  <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
+                      {getPieceAtIndex(previousIndex)?.title}
+                    </h2>
+                    <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
+                      {getPieceAtIndex(previousIndex)?.description}
+                    </p>
+                    {getPieceAtIndex(previousIndex)?.lastSoldPrice && (
+                      <div className="mb-4 p-3 bg-slate-700 rounded-lg border border-slate-600">
+                        <p className="text-slate-400 text-xs">Last Sale Price</p>
+                        <p className="text-xl font-bold text-amber-300">
+                          ${getPieceAtIndex(previousIndex).lastSoldPrice?.toLocaleString()}
+                        </p>
+                      </div>
+                    )}
+                    <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
+                      <strong className="text-slate-300">History:</strong> {getPieceAtIndex(previousIndex)?.history}
+                    </p>
+                  </div>
                 </div>
               )}
-
-              <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
-                <strong className="text-slate-300">History:</strong> {current?.history}
-              </p>
-
-              <Link
-                href={`/pieces/${current?.id}`}
-                className="inline-block bg-amber-600 hover:bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-semibold transition"
+              {/* Enter animation layer for description */}
+              <div
+                key={`desc-${current?.id ?? currentIndex}-${animationKey}`}
+                className={`desc-transition ${slideDirection} ${slideMode}`}
               >
-                View Full Details
-              </Link>
+                <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
+                    {current?.title}
+                  </h2>
+                  <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
+                    {current?.description}
+                  </p>
+                  {current?.lastSoldPrice && (
+                    <div className="mb-4 p-3 bg-slate-700 rounded-lg border border-slate-600">
+                      <p className="text-slate-400 text-xs">Last Sale Price</p>
+                      <p className="text-xl font-bold text-amber-300">
+                        ${current.lastSoldPrice.toLocaleString()}
+                      </p>
+                    </div>
+                  )}
+                  <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
+                    <strong className="text-slate-300">History:</strong> {current?.history}
+                  </p>
+                  <Link
+                    href={`/pieces/${current?.id}`}
+                    className="inline-block bg-amber-600 hover:bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-semibold transition"
+                  >
+                    View Full Details
+                  </Link>
+                </div>
+              </div>
             </div>
           </>
         )}
@@ -321,6 +352,18 @@ export default function Home() {
         .slide-exit.rtl {
           animation: slideExitRtl 0.6s ease-in-out both;
         }
+        .desc-transition.ltr.manual {
+          animation: descInLtr 0.6s ease-in-out both;
+        }
+        .desc-transition.rtl.manual {
+          animation: descInRtl 0.6s ease-in-out both;
+        }
+        .desc-exit.ltr {
+          animation: descExitLtr 0.6s ease-in-out both;
+        }
+        .desc-exit.rtl {
+          animation: descExitRtl 0.6s ease-in-out both;
+        }
         @keyframes slideInLtr {
           0% { opacity: 0; transform: translateX(-48px); }
           100% { opacity: 1; transform: translateX(0); }
@@ -336,6 +379,22 @@ export default function Home() {
         @keyframes slideExitRtl {
           0% { opacity: 1; transform: translateX(0); }
           100% { opacity: 0; transform: translateX(-48px); }
+        }
+        @keyframes descInLtr {
+          0% { opacity: 0; filter: blur(8px); transform: translateX(-24px); }
+          100% { opacity: 1; filter: blur(0px); transform: translateX(0); }
+        }
+        @keyframes descInRtl {
+          0% { opacity: 0; filter: blur(8px); transform: translateX(24px); }
+          100% { opacity: 1; filter: blur(0px); transform: translateX(0); }
+        }
+        @keyframes descExitLtr {
+          0% { opacity: 1; filter: blur(0px); transform: translateX(0); }
+          100% { opacity: 0; filter: blur(8px); transform: translateX(24px); }
+        }
+        @keyframes descExitRtl {
+          0% { opacity: 1; filter: blur(0px); transform: translateX(0); }
+          100% { opacity: 0; filter: blur(8px); transform: translateX(-24px); }
         }
         @keyframes slideCycleLtr {
           0% { opacity: 0; transform: translateX(-48px); }
