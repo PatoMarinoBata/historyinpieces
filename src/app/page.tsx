@@ -58,7 +58,7 @@ export default function Home() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [handlePrev, handleNext]);
 
   const handlePrev = () => {
     advance(-1, "rtl", "manual");
@@ -206,7 +206,7 @@ export default function Home() {
                   <button
                     onClick={(e) => { e.stopPropagation(); handlePrev(); }}
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
+                    className="absolute left-24 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
                     aria-label="Previous"
                   >
                     ‹
@@ -214,7 +214,7 @@ export default function Home() {
                   <button
                     onClick={(e) => { e.stopPropagation(); handleNext(); }}
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
+                    className="absolute right-24 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
                     aria-label="Next"
                   >
                     ›
