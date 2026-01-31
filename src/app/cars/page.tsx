@@ -92,6 +92,19 @@ export default function CarsPage() {
   };
 
   const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    const deltaX = dragStartX.current ? event.clientX - dragStartX.current : 0;
+    // If not a swipe (small movement), treat as click
+    if (Math.abs(deltaX) < 5) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const halfWidth = rect.width / 2;
+      if (clickX < halfWidth) {
+        handlePrev();
+      } else {
+        handleNext();
+      }
+    }
     isDragging.current = false;
     dragStartX.current = null;
     hasSwiped.current = false;

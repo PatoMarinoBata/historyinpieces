@@ -76,8 +76,6 @@ export default function Home() {
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (pieces.length <= 1) return;
-    // Ignore if clicking on a button
-    if ((event.target as HTMLElement).tagName === 'BUTTON') return;
     isDragging.current = true;
     hasSwiped.current = false;
     dragStartX.current = event.clientX;
@@ -100,6 +98,18 @@ export default function Home() {
 
   const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
     if (!isDragging.current) return;
+    const deltaX = dragStartX.current ? event.clientX - dragStartX.current : 0;
+    // If not a swipe (small movement), treat as click
+    if (Math.abs(deltaX) < 5) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const halfWidth = rect.width / 2;
+      if (clickX < halfWidth) {
+        handlePrev();
+      } else {
+        handleNext();
+      }
+    }
     isDragging.current = false;
     dragStartX.current = null;
     hasSwiped.current = false;
@@ -224,28 +234,6 @@ export default function Home() {
                   />
                 )}
               </div>
-
-              {/* Navigation Arrows */}
-              {pieces.length > 1 && (
-                <>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-                    onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-100 hover:text-amber-400 transition z-30 text-5xl font-light"
-                    aria-label="Previous"
-                  >
-                    ←
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                    onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-100 hover:text-amber-400 transition z-30 text-5xl font-light"
-                    aria-label="Next"
-                  >
-                    →
-                  </button>
-                </>
-              )}
             </div>
 
             {/* Info Section */}
