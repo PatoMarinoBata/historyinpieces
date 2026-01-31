@@ -51,6 +51,14 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [pieces.length, currentIndex, advance]);
 
+  const handlePrev = () => {
+    advance(-1, "rtl", "manual");
+  };
+
+  const handleNext = () => {
+    advance(1, "ltr", "manual");
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') handlePrev();
@@ -59,14 +67,6 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handlePrev, handleNext]);
-
-  const handlePrev = () => {
-    advance(-1, "rtl", "manual");
-  };
-
-  const handleNext = () => {
-    advance(1, "ltr", "manual");
-  };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (pieces.length <= 1) return;
