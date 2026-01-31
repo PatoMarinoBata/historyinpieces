@@ -181,7 +181,7 @@ export default function Home() {
                     key={`exit-${previousIndex}`}
                     className={`absolute inset-0 slide-exit ${slideDirection}`}
                   >
-                    <div className="w-full flex items-center justify-center p-4">
+                    <div className="w-full h-64 flex items-center justify-center p-4">
                       {getPieceAtIndex(previousIndex)?.images?.[0] && (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
@@ -198,7 +198,7 @@ export default function Home() {
                   key={`${current?.id ?? currentIndex}-${animationKey}`}
                   className={`slide-cycle ${slideDirection} ${slideMode}`}
                 >
-                  <div className="w-full flex items-center justify-center p-4">
+                  <div className="w-full h-64 flex items-center justify-center p-4">
                     {current?.images?.[0] && (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
