@@ -261,14 +261,6 @@ export default function Home() {
                     <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
                       {getPieceAtIndex(previousIndex)?.description}
                     </p>
-                    {getPieceAtIndex(previousIndex)?.lastSoldPrice && (
-                      <div className="mb-4 p-3 bg-slate-700 rounded-lg border border-slate-600">
-                        <p className="text-slate-400 text-xs">Last Sale Price</p>
-                        <p className="text-xl font-bold text-amber-300">
-                          ${getPieceAtIndex(previousIndex).lastSoldPrice?.toLocaleString()}
-                        </p>
-                      </div>
-                    )}
                     <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
                       <strong className="text-slate-300">History:</strong> {getPieceAtIndex(previousIndex)?.history}
                     </p>
@@ -287,14 +279,6 @@ export default function Home() {
                   <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
                     {current?.description}
                   </p>
-                  {current?.lastSoldPrice && (
-                    <div className="mb-4 p-3 bg-slate-700 rounded-lg border border-slate-600">
-                      <p className="text-slate-400 text-xs">Last Sale Price</p>
-                      <p className="text-xl font-bold text-amber-300">
-                        ${current.lastSoldPrice.toLocaleString()}
-                      </p>
-                    </div>
-                  )}
                   <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
                     <strong className="text-slate-300">History:</strong> {current?.history}
                   </p>
