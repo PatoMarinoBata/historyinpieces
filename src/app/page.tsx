@@ -163,16 +163,14 @@ export default function Home() {
             >
               {/* Previous Item (Left, smaller) */}
               <div className="absolute left-[35%] top-1/2 -translate-y-1/2 -translate-x-1/2 w-36 h-32 opacity-60 scale-90 transition-all duration-500 ease-in-out z-0">
-                <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
-                  {prev?.images?.[0] && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={prev.images[0]}
-                      alt={prev.title}
-                      className="w-full h-full object-contain bg-slate-900 transition-opacity duration-500"
-                    />
-                  )}
-                </div>
+                {prev?.images?.[0] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={prev.images[0]}
+                    alt={prev.title}
+                    className="w-full h-full object-contain transition-opacity duration-500 drop-shadow-2xl"
+                  />
+                )}
               </div>
 
               {/* Current Item (Center, large) */}
@@ -183,17 +181,15 @@ export default function Home() {
                     key={`exit-${previousIndex}`}
                     className={`absolute inset-0 slide-exit ${slideDirection}`}
                   >
-                    <div className="w-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
-                      <div className="relative bg-slate-900 flex items-center justify-center p-4">
-                        {getPieceAtIndex(previousIndex)?.images?.[0] && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={getPieceAtIndex(previousIndex).images[0]}
-                            alt={getPieceAtIndex(previousIndex).title}
-                            className="w-auto h-auto max-w-full max-h-64 object-contain"
-                          />
-                        )}
-                      </div>
+                    <div className="w-full flex items-center justify-center p-4">
+                      {getPieceAtIndex(previousIndex)?.images?.[0] && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={getPieceAtIndex(previousIndex).images[0]}
+                          alt={getPieceAtIndex(previousIndex).title}
+                          className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl"
+                        />
+                      )}
                     </div>
                   </div>
                 )}
@@ -202,33 +198,29 @@ export default function Home() {
                   key={`${current?.id ?? currentIndex}-${animationKey}`}
                   className={`slide-cycle ${slideDirection} ${slideMode}`}
                 >
-                  <div className="w-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
-                    <div className="relative bg-slate-900 flex items-center justify-center p-4">
-                      {current?.images?.[0] && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={current.images[0]}
-                          alt={current.title}
-                          className="w-auto h-auto max-w-full max-h-64 object-contain"
-                        />
-                      )}
-                    </div>
+                  <div className="w-full flex items-center justify-center p-4">
+                    {current?.images?.[0] && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={current.images[0]}
+                        alt={current.title}
+                        className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
 
               {/* Next Item (Right, smaller) */}
               <div className="absolute right-[35%] top-1/2 -translate-y-1/2 translate-x-1/2 w-36 h-32 opacity-60 scale-90 transition-all duration-500 ease-in-out z-0">
-                <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
-                  {next?.images?.[0] && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={next.images[0]}
-                      alt={next.title}
-                      className="w-full h-full object-contain bg-slate-900 transition-opacity duration-500"
-                    />
-                  )}
-                </div>
+                {next?.images?.[0] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={next.images[0]}
+                    alt={next.title}
+                    className="w-full h-full object-contain transition-opacity duration-500 drop-shadow-2xl"
+                  />
+                )}
               </div>
 
               {/* Navigation Arrows */}
