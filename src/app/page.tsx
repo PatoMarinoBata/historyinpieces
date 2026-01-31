@@ -157,7 +157,7 @@ export default function Home() {
               onPointerCancel={handlePointerLeave}
             >
               {/* Previous Item (Left, smaller) */}
-              <div className="absolute left-16 top-1/2 -translate-y-1/2 w-14 h-20 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
+              <div className="absolute left-[35%] top-1/2 -translate-y-1/2 -translate-x-1/2 w-36 h-32 opacity-60 scale-90 transition-all duration-500 ease-in-out z-0">
                 <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
                   {prev?.images?.[0] && (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -187,7 +187,7 @@ export default function Home() {
               </div>
 
               {/* Next Item (Right, smaller) */}
-              <div className="absolute right-16 top-1/2 -translate-y-1/2 w-14 h-20 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
+              <div className="absolute right-[35%] top-1/2 -translate-y-1/2 translate-x-1/2 w-36 h-32 opacity-60 scale-90 transition-all duration-500 ease-in-out z-0">
                 <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
                   {next?.images?.[0] && (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -206,18 +206,18 @@ export default function Home() {
                   <button
                     onClick={(e) => { e.stopPropagation(); handlePrev(); }}
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute left-24 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-100 hover:text-amber-400 transition z-30 text-5xl font-light"
                     aria-label="Previous"
                   >
-                    ‹
+                    ←
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleNext(); }}
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute right-24 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-100 hover:text-amber-400 transition z-30 text-5xl font-light"
                     aria-label="Next"
                   >
-                    ›
+                    →
                   </button>
                 </>
               )}
