@@ -15,10 +15,12 @@ type Piece = {
 export default function Home() {
   const [pieces, setPieces] = useState<Piece[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [animationKey, setAnimationKey] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"ltr" | "rtl">("ltr");
   const [slideMode, setSlideMode] = useState<"auto" | "manual">("auto");
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const dragStartX = useRef<number | null>(null);
   const isDragging = useRef(false);
   const hasSwiped = useRef(false);
@@ -35,12 +37,15 @@ export default function Home() {
   const advance = useCallback(
     (direction: 1 | -1, animation: "ltr" | "rtl", mode: "auto" | "manual") => {
       if (pieces.length === 0) return;
+      setPreviousIndex(currentIndex);
       setSlideDirection(animation);
       setSlideMode(mode);
+      setIsTransitioning(true);
       setCurrentIndex((prev) => (prev + direction + pieces.length) % pieces.length);
       setAnimationKey((prev) => prev + 1);
+      setTimeout(() => setIsTransitioning(false), mode === "manual" ? 600 : 8000);
     },
-    [pieces.length]
+    [pieces.length, currentIndex]
   );
 
   useEffect(() => {
@@ -171,17 +176,43 @@ export default function Home() {
               </div>
 
               {/* Current Item (Center, large) */}
-              <div key={`${current?.id ?? currentIndex}-${animationKey}`} className={`relative z-10 w-72 slide-cycle ${slideDirection} ${slideMode}`}>
-                <div className="w-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
-                  <div className="relative bg-slate-900 flex items-center justify-center p-4">
-                    {current?.images?.[0] && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={current.images[0]}
-                        alt={current.title}
-                        className="w-auto h-auto max-w-full max-h-64 object-contain"
-                      />
-                    )}
+              <div className="relative z-10 w-72">
+                {/* Exit animation layer - outgoing item */}
+                {isTransitioning && slideMode === "manual" && (
+                  <div
+                    key={`exit-${previousIndex}`}
+                    className={`absolute inset-0 slide-exit ${slideDirection}`}
+                  >
+                    <div className="w-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                      <div className="relative bg-slate-900 flex items-center justify-center p-4">
+                        {getPieceAtIndex(previousIndex)?.images?.[0] && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={getPieceAtIndex(previousIndex).images[0]}
+                            alt={getPieceAtIndex(previousIndex).title}
+                            className="w-auto h-auto max-w-full max-h-64 object-contain"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* Enter animation layer - incoming item */}
+                <div
+                  key={`${current?.id ?? currentIndex}-${animationKey}`}
+                  className={`slide-cycle ${slideDirection} ${slideMode}`}
+                >
+                  <div className="w-full bg-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div className="relative bg-slate-900 flex items-center justify-center p-4">
+                      {current?.images?.[0] && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={current.images[0]}
+                          alt={current.title}
+                          className="w-auto h-auto max-w-full max-h-64 object-contain"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -284,6 +315,12 @@ export default function Home() {
         .slide-cycle.ltr.auto {
           animation: slideCycleLtr 8s ease-in-out both;
         }
+        .slide-exit.ltr {
+          animation: slideExitLtr 0.6s ease-in-out both;
+        }
+        .slide-exit.rtl {
+          animation: slideExitRtl 0.6s ease-in-out both;
+        }
         @keyframes slideInLtr {
           0% { opacity: 0; transform: translateX(-48px); }
           100% { opacity: 1; transform: translateX(0); }
@@ -291,6 +328,14 @@ export default function Home() {
         @keyframes slideInRtl {
           0% { opacity: 0; transform: translateX(48px); }
           100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideExitLtr {
+          0% { opacity: 1; transform: translateX(0); }
+          100% { opacity: 0; transform: translateX(48px); }
+        }
+        @keyframes slideExitRtl {
+          0% { opacity: 1; transform: translateX(0); }
+          100% { opacity: 0; transform: translateX(-48px); }
         }
         @keyframes slideCycleLtr {
           0% { opacity: 0; transform: translateX(-48px); }
