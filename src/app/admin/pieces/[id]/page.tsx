@@ -27,7 +27,6 @@ export default async function EditPiecePage({ params }: { params: Promise<{ id: 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 p-8">
       <h1 className="mb-6 text-3xl font-bold">Edit Piece</h1>
-      {/* @ts-expect-error Server/Client boundary */}
       <EditForm piece={piece} />
     </div>
   );
