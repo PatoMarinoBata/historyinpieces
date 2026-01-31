@@ -70,6 +70,8 @@ export default function Home() {
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (pieces.length <= 1) return;
+    // Ignore if clicking on a button
+    if ((event.target as HTMLElement).tagName === 'BUTTON') return;
     isDragging.current = true;
     hasSwiped.current = false;
     dragStartX.current = event.clientX;
