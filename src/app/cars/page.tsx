@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import Link from "next/link";
+import TopNav from "../components/TopNav";
 
 type Piece = {
   id: string;
@@ -104,11 +105,12 @@ export default function CarsPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <TopNav />
       <video autoPlay loop muted playsInline className="fixed inset-0 w-full h-full object-cover z-0 opacity-40">
         <source src="/images/grok-video-6df44c25-8f8e-40e8-98c2-e25e588563a0.mp4" type="video/mp4" />
       </video>
       <div className="fixed inset-0 bg-black/50 z-0"></div>
-      <div className="relative z-10">
+      <div className="relative z-10 pt-16">
         <div className="text-center pt-6 pb-3">
           <h1 className="text-4xl md:text-5xl font-semibold text-slate-100 mb-1 drop-shadow-lg font-serif tracking-wide">
             Classic Cars

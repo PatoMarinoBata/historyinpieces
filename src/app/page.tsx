@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
 import Link from "next/link";
+import TopNav from "./components/TopNav";
 
 type Piece = {
   id: string;
@@ -120,6 +121,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <TopNav />
       {/* Video Background */}
       <video
         autoPlay
@@ -135,7 +137,7 @@ export default function Home() {
       <div className="fixed inset-0 bg-black/50 z-0"></div>
 
       {/* Content layer */}
-      <div className="relative z-10">
+      <div className="relative z-10 pt-16">
         {/* Header */}
         <div className="text-center pt-6 pb-3">
           <h1 className="text-4xl md:text-5xl font-semibold text-slate-100 mb-1 drop-shadow-lg font-serif tracking-wide">
