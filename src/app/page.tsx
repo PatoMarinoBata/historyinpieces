@@ -194,13 +194,15 @@ export default function Home() {
                 <>
                   <button
                     onClick={handlePrev}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-20 text-xl font-bold"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-20 text-xl font-bold pointer-events-auto"
+                    aria-label="Previous"
                   >
                     ‹
                   </button>
                   <button
                     onClick={handleNext}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-20 text-xl font-bold"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-20 text-xl font-bold pointer-events-auto"
+                    aria-label="Next"
                   >
                     ›
                   </button>
