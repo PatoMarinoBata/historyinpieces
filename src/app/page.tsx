@@ -51,6 +51,15 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [pieces.length, currentIndex, advance]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const handlePrev = () => {
     advance(-1, "rtl", "manual");
   };
@@ -138,7 +147,7 @@ export default function Home() {
           <>
             {/* Carousel Images - 3 Items Layout */}
             <div
-              className="relative h-[360px] flex items-center justify-center gap-3 mb-3 overflow-hidden touch-pan-y"
+              className="relative h-[320px] flex items-center justify-center gap-2 mb-3 overflow-hidden touch-pan-y"
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
@@ -146,7 +155,7 @@ export default function Home() {
               onPointerCancel={handlePointerLeave}
             >
               {/* Previous Item (Left, smaller) */}
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 w-16 h-24 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
+              <div className="absolute left-16 top-1/2 -translate-y-1/2 w-14 h-20 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
                 <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
                   {prev?.images?.[0] && (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -176,7 +185,7 @@ export default function Home() {
               </div>
 
               {/* Next Item (Right, smaller) */}
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-24 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
+              <div className="absolute right-16 top-1/2 -translate-y-1/2 w-14 h-20 opacity-55 scale-75 transition-all duration-500 ease-in-out z-0">
                 <div className="w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
                   {next?.images?.[0] && (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -193,15 +202,17 @@ export default function Home() {
               {pieces.length > 1 && (
                 <>
                   <button
-                    onClick={handlePrev}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-20 text-xl font-bold pointer-events-auto"
+                    onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
                     aria-label="Previous"
                   >
                     ‹
                   </button>
                   <button
-                    onClick={handleNext}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-20 text-xl font-bold pointer-events-auto"
+                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded-full w-12 h-12 flex items-center justify-center transition z-30 text-xl font-bold"
                     aria-label="Next"
                   >
                     ›
