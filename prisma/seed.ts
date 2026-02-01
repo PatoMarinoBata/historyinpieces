@@ -34,7 +34,7 @@ async function main() {
         title: "Mona Lisa",
         description: "A portrait by Leonardo da Vinci, arguably the most famous painting in the world.",
         history: "Painted between 1503 and 1506. Acquired by King Francis I and later moved to the Louvre.",
-        images: ["/images/mona-lisa.jpg", "/images/Monalisa2.jpg", "/images/Monalisa3.jpg"],
+        images: ["https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=800"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1517-01-01", owner: "King Francis I of France" },
@@ -45,7 +45,7 @@ async function main() {
         title: "The Starry Night",
         description: "An oil-on-canvas painting by Vincent van Gogh.",
         history: "Painted in June 1889, depicting the view from his asylum room in Saint-Rémy-de-Provence.",
-        images: ["/images/starry-night.jpg"],
+        images: ["https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1941-01-01", owner: "Museum of Modern Art, New York" }
@@ -89,7 +89,7 @@ async function main() {
         title: "Al Capone's 1928 Cadillac",
         description: "Armored Cadillac Town Sedan used by notorious gangster Al Capone.",
         history: "Built with bulletproof glass and armor plating. Later used by President Franklin D. Roosevelt.",
-        images: ["/images/cadillac.svg"],
+        images: ["https://images.unsplash.com/photo-1563720223185-11003d516935?w=800"],
         category: "CAR",
         lastSoldPrice: 341000,
         lastSoldDate: new Date("2012-01-01"),
@@ -103,7 +103,7 @@ async function main() {
         title: "James Bond's Aston Martin DB5",
         description: "The iconic car from Goldfinger (1964) and other James Bond films.",
         history: "Featured in multiple Bond films with gadgets including machine guns and an ejector seat.",
-        images: ["/images/aston-martin-db5.jpg"],
+        images: ["https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800"],
         category: "CAR",
         lastSoldPrice: 6385000,
         lastSoldDate: new Date("2019-08-15"),
@@ -156,7 +156,7 @@ async function main() {
         title: "David by Michelangelo",
         description: "Renaissance sculpture created between 1501 and 1504.",
         history: "Marble statue depicting the Biblical hero David. Originally placed in Florence's Piazza della Signoria.",
-        images: ["/images/david.jpg"],
+        images: ["https://images.unsplash.com/photo-1566733448851-4d8f3f26201e?w=800"],
         category: "STATUE",
         transactionHistory: [
           { date: "1504-01-01", owner: "Republic of Florence" },
@@ -167,7 +167,7 @@ async function main() {
         title: "Statue of Liberty",
         description: "A colossal neoclassical sculpture on Liberty Island in New York Harbor.",
         history: "Designed by Frédéric Auguste Bartholdi. A gift from France to the United States, dedicated in 1886.",
-        images: ["/images/statue-liberty.jpg"],
+        images: ["https://images.unsplash.com/photo-1542300042-5aed2dbf6c05?w=800"],
         category: "STATUE",
         transactionHistory: [
           { date: "1886-10-28", owner: "United States of America" }
@@ -210,7 +210,7 @@ async function main() {
         title: "Honus Wagner T206 Baseball Card",
         description: "One of the rarest and most valuable baseball cards ever produced.",
         history: "Produced between 1909-1911. Only 50-200 copies believed to exist.",
-        images: ["/images/baseball-card.svg"],
+        images: ["https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800"],
         category: "COLLECTIBLE",
         lastSoldPrice: 7250000,
         lastSoldDate: new Date("2022-08-01"),
@@ -223,7 +223,7 @@ async function main() {
         title: "Action Comics #1 (1938)",
         description: "The first appearance of Superman, the most valuable comic book in existence.",
         history: "Published in June 1938. Fewer than 100 copies are thought to exist today.",
-        images: ["/images/action-comics.svg"],
+        images: ["https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?w=800"],
         category: "COLLECTIBLE",
         lastSoldPrice: 3250000,
         lastSoldDate: new Date("2021-04-06"),
@@ -276,7 +276,7 @@ async function main() {
         title: "Magna Carta (1215)",
         description: "Medieval charter guaranteeing English political liberties.",
         history: "Drafted in 1215 to make peace between King John and rebel barons. Foundation of constitutional law.",
-        images: ["/images/magna-carta.jpg"],
+        images: ["https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800"],
         category: "DOCUMENT",
         transactionHistory: [
           { date: "1215-06-15", owner: "Kingdom of England" },
@@ -287,7 +287,7 @@ async function main() {
         title: "Declaration of Independence",
         description: "Document declaring the thirteen American colonies independent from British rule.",
         history: "Adopted on July 4, 1776. Primarily drafted by Thomas Jefferson.",
-        images: ["/images/declaration.svg"],
+        images: ["https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800"],
         category: "DOCUMENT",
         transactionHistory: [
           { date: "1776-07-04", owner: "Continental Congress" },
@@ -334,7 +334,7 @@ async function main() {
         title: "Hope Diamond",
         description: "A 45.52-carat deep-blue diamond, one of the most famous jewels in the world.",
         history: "Discovered in India in the 17th century. Donated to the Smithsonian Institution in 1958.",
-        images: ["/images/hope-diamond.jpg"],
+        images: ["https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800"],
         category: "OTHER",
         transactionHistory: [
           { date: "1668-01-01", owner: "Jean-Baptiste Tavernier" },
@@ -345,7 +345,7 @@ async function main() {
         title: "The Crown Jewels of England",
         description: "Collection of royal ceremonial objects including crowns, scepters, and orbs.",
         history: "Accumulated over centuries. Housed in the Tower of London since 1661.",
-        images: ["/images/crown-jewels.svg"],
+        images: ["https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800"],
         category: "OTHER",
         transactionHistory: [
           { date: "1661-01-01", owner: "British Monarchy" }
