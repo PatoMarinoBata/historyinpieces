@@ -147,13 +147,16 @@ export default function CarsPage() {
                   {prev?.images?.[0] && <img src={prev.images[0]} alt={prev.title} className="w-full h-full object-contain transition-opacity duration-500 drop-shadow-2xl" />}
                 </div>
                 <div className="relative z-10 w-72">
-                  {isTransitioning && slideMode === "manual" && (
-                    <div key={`exit-${previousIndex}`} className={`absolute inset-0 slide-exit ${slideDirection}`}>
-                      <div className="w-full h-64 flex items-center justify-center p-4">
-                        {getPieceAtIndex(previousIndex)?.images?.[0] && <img src={getPieceAtIndex(previousIndex).images[0]} alt={getPieceAtIndex(previousIndex).title} className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl" />}
+                  {isTransitioning && slideMode === "manual" && (() => {
+                    const previousPiece = getPieceAtIndex(previousIndex);
+                    return (
+                      <div key={`exit-${previousIndex}`} className={`absolute inset-0 slide-exit ${slideDirection}`}>
+                        <div className="w-full h-64 flex items-center justify-center p-4">
+                          {previousPiece?.images?.[0] && <img src={previousPiece.images[0]} alt={previousPiece.title} className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl" />}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    );
+                  })()}
                   <div key={`${current?.id ?? currentIndex}-${animationKey}`} className={`slide-cycle ${slideDirection} ${slideMode}`}>
                     <div className="w-full h-64 flex items-center justify-center p-4">
                       {current?.images?.[0] && <img src={current.images[0]} alt={current.title} className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl" />}
@@ -171,15 +174,18 @@ export default function CarsPage() {
                 )}
               </div>
               <div className="relative max-w-xl mx-auto">
-                {isTransitioning && slideMode === "manual" && (
-                  <div key={`desc-exit-${previousIndex}`} className={`absolute inset-0 desc-exit ${slideDirection}`}>
-                    <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
-                      <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{getPieceAtIndex(previousIndex)?.title}</h2>
-                      <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{getPieceAtIndex(previousIndex)?.description}</p>
-                      <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-slate-300">History:</strong> {getPieceAtIndex(previousIndex)?.history}</p>
+                {isTransitioning && slideMode === "manual" && (() => {
+                  const previousPiece = getPieceAtIndex(previousIndex);
+                  return (
+                    <div key={`desc-exit-${previousIndex}`} className={`absolute inset-0 desc-exit ${slideDirection}`}>
+                      <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
+                        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{previousPiece?.title}</h2>
+                        <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{previousPiece?.description}</p>
+                        <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-slate-300">History:</strong> {previousPiece?.history}</p>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
                 <div key={`desc-${current?.id ?? currentIndex}-${animationKey}`} className={`desc-transition ${slideDirection} ${slideMode}`}>
                   <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
                     <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{current?.title}</h2>

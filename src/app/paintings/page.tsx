@@ -229,24 +229,27 @@ export default function PaintingsPage() {
               {/* Info Section */}
               <div className="relative max-w-xl mx-auto">
                 {/* Exit animation layer for description */}
-                {isTransitioning && slideMode === "manual" && (
-                  <div
-                    key={`desc-exit-${previousIndex}`}
-                    className={`absolute inset-0 desc-exit ${slideDirection}`}
-                  >
-                    <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
-                      <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
-                        {getPieceAtIndex(previousIndex)?.title}
-                      </h2>
-                      <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
-                        {getPieceAtIndex(previousIndex)?.description}
-                      </p>
-                      <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
-                        <strong className="text-slate-300">History:</strong> {getPieceAtIndex(previousIndex)?.history}
-                      </p>
+                {isTransitioning && slideMode === "manual" && (() => {
+                  const previousPiece = getPieceAtIndex(previousIndex);
+                  return (
+                    <div
+                      key={`desc-exit-${previousIndex}`}
+                      className={`absolute inset-0 desc-exit ${slideDirection}`}
+                    >
+                      <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
+                        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">
+                          {previousPiece?.title}
+                        </h2>
+                        <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">
+                          {previousPiece?.description}
+                        </p>
+                        <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed">
+                          <strong className="text-slate-300">History:</strong> {previousPiece?.history}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
                 {/* Enter animation layer for description */}
                 <div
                   key={`desc-${current?.id ?? currentIndex}-${animationKey}`}
