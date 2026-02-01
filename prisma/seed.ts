@@ -390,8 +390,10 @@ async function main() {
     const existing = await prisma.piece.findFirst({ where: { title: piece.title } });
     if (existing) {
       await prisma.piece.update({ where: { id: existing.id }, data: piece as any });
+      console.log(`Updated: ${piece.title}`);
     } else {
       await prisma.piece.create({ data: piece as any });
+      console.log(`Created: ${piece.title}`);
     }
   }
   console.log(`Seeded ${pieces.length} example pieces across all categories.`);
