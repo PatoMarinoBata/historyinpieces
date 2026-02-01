@@ -178,23 +178,26 @@ export default function PaintingsPage() {
                 {/* Current Item (Center, large) */}
                 <div className="relative z-10 w-72">
                   {/* Exit animation layer - outgoing item */}
-                  {isTransitioning && slideMode === "manual" && (
-                    <div
-                      key={`exit-${previousIndex}`}
-                      className={`absolute inset-0 slide-exit ${slideDirection}`}
-                    >
-                      <div className="w-full h-64 flex items-center justify-center p-4">
-                        {getPieceAtIndex(previousIndex)?.images?.[0] && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={getPieceAtIndex(previousIndex).images[0]}
-                            alt={getPieceAtIndex(previousIndex).title}
-                            className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl"
-                          />
-                        )}
+                  {isTransitioning && slideMode === "manual" && (() => {
+                    const previousPiece = getPieceAtIndex(previousIndex);
+                    return (
+                      <div
+                        key={`exit-${previousIndex}`}
+                        className={`absolute inset-0 slide-exit ${slideDirection}`}
+                      >
+                        <div className="w-full h-64 flex items-center justify-center p-4">
+                          {previousPiece?.images?.[0] && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={previousPiece.images[0]}
+                              alt={previousPiece.title}
+                              className="w-auto h-auto max-w-full max-h-64 object-contain drop-shadow-2xl"
+                            />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    );
+                  })()}
                   {/* Enter animation layer - incoming item */}
                   <div
                     key={`${current?.id ?? currentIndex}-${animationKey}`}
