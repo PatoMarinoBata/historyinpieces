@@ -111,7 +111,10 @@ export default function CarsPage() {
     event.currentTarget.releasePointerCapture(event.pointerId);
   };
 
-  const getPieceAtIndex = (index: number) => pieces[index % pieces.length];
+  const getPieceAtIndex = (index: number) => {
+    if (pieces.length === 0) return null;
+    return pieces[(index % pieces.length + pieces.length) % pieces.length];
+  };
   const current = getPieceAtIndex(currentIndex);
   const prev = getPieceAtIndex(currentIndex - 1);
   const next = getPieceAtIndex(currentIndex + 1);
