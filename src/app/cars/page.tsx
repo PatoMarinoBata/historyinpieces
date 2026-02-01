@@ -166,12 +166,6 @@ export default function CarsPage() {
                 <div className="absolute right-[35%] top-1/2 -translate-y-1/2 translate-x-1/2 w-36 h-32 opacity-60 scale-90 transition-all duration-500 ease-in-out z-0">
                   {next?.images?.[0] && <img src={next.images[0]} alt={next.title} className="w-full h-full object-contain transition-opacity duration-500 drop-shadow-2xl" />}
                 </div>
-                {pieces.length > 1 && (
-                  <>
-                    <button onClick={(e) => { e.stopPropagation(); handlePrev(); }} onPointerDown={(e) => e.stopPropagation()} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-100 hover:text-amber-400 transition z-30 text-5xl font-light" aria-label="Previous">←</button>
-                    <button onClick={(e) => { e.stopPropagation(); handleNext(); }} onPointerDown={(e) => e.stopPropagation()} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-100 hover:text-amber-400 transition z-30 text-5xl font-light" aria-label="Next">→</button>
-                  </>
-                )}
               </div>
               <div className="relative max-w-xl mx-auto">
                 {isTransitioning && slideMode === "manual" && (() => {
