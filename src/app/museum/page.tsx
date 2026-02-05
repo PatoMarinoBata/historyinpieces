@@ -174,7 +174,7 @@ export default function MuseumPage() {
         {/* Paintings on the walls */}
         <div className="relative h-full flex items-center justify-center">
           {/* Show current painting (left) and next ones (to the right) */}
-          {[0, 1, 2, 3, 4].map((offset) => {
+          {[0, 1, 2].map((offset) => {
             const painting = getPaintingAtIndex(currentIndex + offset);
             if (!painting?.images?.[0]) return null;
 
@@ -184,21 +184,21 @@ export default function MuseumPage() {
             return (
               <div
                 key={`${painting.id}-${offset}`}
-                className={`absolute transition-all duration-1200 ease-in-out`}
+                className={`absolute transition-all duration-1200 ease-in-out flex items-center justify-center`}
                 style={{
-                  left: isMain ? '15%' : `${15 + offset * 18}%`,
+                  left: isMain ? '10%' : `${10 + offset * 30}%`,
                   transform: isMain 
                     ? 'translateY(-50%) scale(1)' 
-                    : `translateY(-50%) scale(${1 - offset * 0.15}) perspective(1000px) rotateY(-${offset * 8}deg)`,
+                    : `translateY(-50%) scale(${1 - offset * 0.2}) perspective(1000px) rotateY(-${offset * 10}deg)`,
                   top: '50%',
-                  opacity: isMain ? 1 : Math.max(0.4, 1 - offset * 0.15),
+                  opacity: isMain ? 1 : Math.max(0.5, 1 - offset * 0.2),
                   zIndex: 20 - offset,
-                  filter: isMain ? 'none' : `blur(${offset * 0.5}px)`,
+                  filter: isMain ? 'none' : `blur(${offset * 0.8}px)`,
                 }}
               >
                 <div className="museum-frame" style={{
-                  maxWidth: isMain ? '600px' : `${600 - offset * 80}px`,
-                  maxHeight: isMain ? '500px' : `${500 - offset * 70}px`,
+                  maxWidth: isMain ? '450px' : `${450 - offset * 100}px`,
+                  maxHeight: isMain ? '400px' : `${400 - offset * 90}px`,
                 }}>
                   <img
                     src={painting.images[0]}
