@@ -34,6 +34,16 @@ export default function TopNav() {
               Paintings
             </Link>
             <Link
+              href="/museum"
+              className={`px-4 py-2 rounded-lg font-medium transition ${
+                isActive("/museum")
+                  ? "bg-amber-600 text-slate-900"
+                  : "text-slate-300 hover:text-amber-400 hover:bg-slate-800"
+              }`}
+            >
+              Museum
+            </Link>
+            <Link
               href="/cars"
               className={`px-4 py-2 rounded-lg font-medium transition ${
                 isActive("/cars")
