@@ -68,11 +68,12 @@ export default function MuseumPage() {
     }
   }, [navigate]);
 
-  const current = paintings[currentIndex];
   const getPaintingAtIndex = (index: number) => {
     if (paintings.length === 0) return null;
     return paintings[(index % paintings.length + paintings.length) % paintings.length];
   };
+  
+  const current = getPaintingAtIndex(currentIndex);
 
   if (paintings.length === 0) {
     return (
