@@ -129,35 +129,32 @@ export default function MuseumPage() {
 
         {/* Paintings on the walls */}
         <div className="relative h-full flex items-center justify-center">
-          {/* Show current painting and adjacent ones for parallax effect */}
-          {[-2, -1, 0, 1, 2].map((offset) => {
+          {/* Show current painting (left) and next ones (to the right) */}
+          {[0, 1, 2, 3, 4].map((offset) => {
             const painting = getPaintingAtIndex(currentIndex + offset);
             if (!painting?.images?.[0]) return null;
 
-            const isCenter = offset === 0;
-            const distance = Math.abs(offset);
-            const side = offset < 0 ? 'left' : 'right';
+            const isMain = offset === 0;
+            const distance = offset;
 
             return (
               <div
                 key={`${painting.id}-${offset}`}
-                className={`absolute transition-all duration-1200 ease-in-out ${
-                  isWalking ? 'museum-painting-slide' : ''
-                }`}
+                className={`absolute transition-all duration-1200 ease-in-out`}
                 style={{
-                  [side]: isCenter ? '50%' : `${20 + distance * 15}%`,
-                  transform: isCenter 
-                    ? 'translate(-50%, -50%) scale(1)' 
-                    : `translate(${offset < 0 ? '0' : '-100'}%, -50%) scale(${1 - distance * 0.3}) perspective(800px) rotateY(${offset < 0 ? '15deg' : '-15deg'})`,
+                  left: isMain ? '15%' : `${15 + offset * 18}%`,
+                  transform: isMain 
+                    ? 'translateY(-50%) scale(1)' 
+                    : `translateY(-50%) scale(${1 - offset * 0.15}) perspective(1000px) rotateY(-${offset * 8}deg)`,
                   top: '50%',
-                  opacity: isCenter ? 1 : Math.max(0.3, 1 - distance * 0.3),
-                  zIndex: isCenter ? 20 : 10 - distance,
-                  filter: isCenter ? 'none' : `blur(${distance}px)`,
+                  opacity: isMain ? 1 : Math.max(0.4, 1 - offset * 0.15),
+                  zIndex: 20 - offset,
+                  filter: isMain ? 'none' : `blur(${offset * 0.5}px)`,
                 }}
               >
                 <div className="museum-frame" style={{
-                  width: isCenter ? '500px' : `${400 - distance * 50}px`,
-                  height: isCenter ? '400px' : `${320 - distance * 40}px`,
+                  width: isMain ? '500px' : `${500 - offset * 60}px`,
+                  height: isMain ? '400px' : `${400 - offset * 48}px`,
                 }}>
                   <img
                     src={painting.images[0]}
@@ -175,7 +172,7 @@ export default function MuseumPage() {
 
         {/* Current Painting Info */}
         {current && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center max-w-2xl px-4 z-30">
+          <div className="absolute bottom-8 left-[15%] text-left max-w-md px-4 z-30">
             <h2 className="text-3xl font-bold text-slate-100 mb-2">{current.title}</h2>
             <p className="text-slate-400 text-sm">{current.description}</p>
           </div>
