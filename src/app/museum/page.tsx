@@ -88,29 +88,49 @@ export default function MuseumPage() {
   return (
     <div className="min-h-screen overflow-hidden cursor-pointer relative" ref={containerRef} onClick={handleClick}
       style={{
-        background: 'linear-gradient(to bottom, #2d1810 0%, #4a2d1f 50%, #2d1810 100%)'
+        background: 'linear-gradient(to bottom, #1a1412 0%, #2c1f1a 50%, #1a1412 100%)'
       }}>
-      {/* Museum Wall Texture */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none"
+      {/* Ornamental Damask Wallpaper Pattern */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.1) 2px, rgba(0,0,0,.1) 3px),
-            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 3px)
-          `
+            radial-gradient(circle at 50% 50%, rgba(139, 92, 46, 0.3) 0%, transparent 50%),
+            repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(139, 92, 46, 0.1) 20px, rgba(139, 92, 46, 0.1) 40px),
+            repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(139, 92, 46, 0.1) 20px, rgba(139, 92, 46, 0.1) 40px)
+          `,
+          backgroundSize: '80px 80px, 80px 80px, 80px 80px'
         }}></div>
 
-      {/* Crown Molding - Top */}
-      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-amber-900/40 to-transparent border-b border-amber-700/30 z-10"></div>
+      {/* Ornate Crown Molding - Top */}
+      <div className="absolute top-0 left-0 right-0 h-16 z-10 border-b-2 border-amber-900/50"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(101, 67, 33, 0.4) 0%, rgba(139, 92, 46, 0.3) 50%, transparent 100%)',
+          boxShadow: '0 8px 16px rgba(0,0,0,0.3)'
+        }}>
+        <div className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(251, 191, 36, 0.2) 40px, rgba(251, 191, 36, 0.2) 42px)'
+          }}></div>
+      </div>
       
-      {/* Baseboard - Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-amber-950/60 to-transparent border-t border-amber-800/40 z-10"></div>
+      {/* Wainscoting Panel Design - Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 z-10 border-t-2 border-amber-900/50"
+        style={{
+          background: 'linear-gradient(to top, rgba(58, 38, 19, 0.6) 0%, rgba(101, 67, 33, 0.4) 60%, transparent 100%)'
+        }}>
+        <div className="absolute top-2 left-0 right-0 h-1 bg-amber-800/30"></div>
+        <div className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(139, 92, 46, 0.3) 120px, rgba(139, 92, 46, 0.3) 122px, transparent 122px, transparent 240px, rgba(139, 92, 46, 0.3) 240px)'
+          }}></div>
+      </div>
 
       <TopNav />
       
       {/* Museum Title */}
       <div className="text-center pt-20 pb-6 relative z-20">
-        <h1 className="text-5xl font-bold text-amber-200 mb-2 drop-shadow-lg">The Museum</h1>
-        <p className="text-amber-100/70 italic">Click left or right to walk through the gallery</p>
+        <h1 className="text-5xl font-bold text-amber-300 mb-2 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>The Museum</h1>
+        <p className="text-amber-200/80 italic">Click left or right to walk through the gallery</p>
       </div>
 
       {/* Museum Hallway Container */}
@@ -123,35 +143,33 @@ export default function MuseumPage() {
               : "museum-hallway-backward"
             : ""
         }`}>
-          {/* Marble Floor */}
-          <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-stone-300/20 via-stone-200/10 to-transparent">
-            <div className="absolute inset-0" style={{
+          {/* Polished Wood Floor with Parquet Pattern */}
+          <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-amber-950/30 via-amber-900/20 to-transparent">
+            <div className="absolute inset-0 opacity-40" style={{
               backgroundImage: `
                 repeating-linear-gradient(90deg, 
-                  transparent, transparent 100px, 
-                  rgba(255, 255, 255, 0.08) 100px, 
-                  rgba(255, 255, 255, 0.08) 101px,
-                  transparent 101px, transparent 200px
+                  rgba(101, 67, 33, 0.3), rgba(101, 67, 33, 0.3) 8px,
+                  rgba(139, 92, 46, 0.3) 8px, rgba(139, 92, 46, 0.3) 16px,
+                  rgba(101, 67, 33, 0.3) 16px, rgba(101, 67, 33, 0.3) 24px,
+                  rgba(139, 92, 46, 0.3) 24px, rgba(139, 92, 46, 0.3) 32px
                 ),
                 repeating-linear-gradient(0deg,
-                  transparent, transparent 150px,
-                  rgba(255, 255, 255, 0.05) 150px,
-                  rgba(255, 255, 255, 0.05) 151px,
-                  transparent 151px, transparent 300px
+                  transparent, transparent 60px,
+                  rgba(58, 38, 19, 0.3) 60px, rgba(58, 38, 19, 0.3) 61px
                 )
               `,
-              transform: isWalking ? (direction === "forward" ? 'translateX(-100px)' : 'translateX(100px)') : 'translateX(0)',
+              transform: isWalking ? (direction === "forward" ? 'translateX(-32px)' : 'translateX(32px)') : 'translateX(0)',
               transition: 'transform 1.2s ease-in-out'
             }}></div>
           </div>
 
-          {/* Ambient Museum Lighting from ceiling */}
-          <div className="absolute top-0 left-1/4 right-1/4 h-32 bg-amber-200/5 blur-3xl"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-100/10 blur-2xl rounded-full"></div>
+          {/* Spotlight Effects */}
+          <div className="absolute top-20 left-1/4 w-48 h-96 bg-amber-200/5 blur-3xl rotate-12"></div>
+          <div className="absolute top-20 right-1/4 w-48 h-96 bg-amber-200/5 blur-3xl -rotate-12"></div>
 
-          {/* Side Wall Shadows */}
-          <div className="absolute left-0 top-0 bottom-0 w-1/5 bg-gradient-to-r from-black/40 to-transparent"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-1/5 bg-gradient-to-l from-black/40 to-transparent"></div>
+          {/* Vignette Effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-black/50 to-transparent"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-black/50 to-transparent"></div>
         </div>
 
         {/* Paintings on the walls */}
