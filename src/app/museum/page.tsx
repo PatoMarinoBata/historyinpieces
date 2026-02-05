@@ -186,7 +186,7 @@ export default function MuseumPage() {
                 key={`${painting.id}-${offset}`}
                 className={`absolute transition-all duration-1200 ease-in-out flex items-center justify-center`}
                 style={{
-                  left: isMain ? '12%' : `${12 + offset * 20}%`,
+                  left: isMain ? '12%' : `${12 + offset * 24}%`,
                   transform: isMain 
                     ? 'translateY(-50%) scale(1)' 
                     : `translateY(-50%) scale(${1 - offset * 0.18}) perspective(1000px) rotateY(-${offset * 12}deg)`,
