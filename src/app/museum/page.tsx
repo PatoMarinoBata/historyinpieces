@@ -145,13 +145,13 @@ export default function MuseumPage() {
                   isWalking ? 'museum-painting-slide' : ''
                 }`}
                 style={{
-                  [side]: isCenter ? '50%' : `${20 + distance * 15}%`,
+                  [side]: isCenter ? '25%' : `${distance === 1 ? 60 : 20 + distance * 15}%`,
                   transform: isCenter 
-                    ? 'translate(-50%, -50%) scale(1)' 
+                    ? 'translateY(-50%) scale(1)' 
                     : `translate(${offset < 0 ? '0' : '-100'}%, -50%) scale(${1 - distance * 0.3}) perspective(800px) rotateY(${offset < 0 ? '15deg' : '-15deg'})`,
                   top: '50%',
                   opacity: isCenter ? 1 : Math.max(0.3, 1 - distance * 0.3),
-                  zIndex: isCenter ? 20 : 10 - distance,
+                  zIndex: isCenter ? 20 : (offset > 0 ? 10 - distance : 5 - distance),
                   filter: isCenter ? 'none' : `blur(${distance}px)`,
                 }}
               >
@@ -175,7 +175,7 @@ export default function MuseumPage() {
 
         {/* Current Painting Info */}
         {current && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center max-w-2xl px-4 z-30">
+          <div className="absolute bottom-8 left-[25%] -translate-x-1/2 text-left max-w-md px-4 z-30">
             <h2 className="text-3xl font-bold text-slate-100 mb-2">{current.title}</h2>
             <p className="text-slate-400 text-sm">{current.description}</p>
           </div>
