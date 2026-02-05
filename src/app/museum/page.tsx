@@ -89,17 +89,15 @@ export default function MuseumPage() {
   return (
     <div className="min-h-screen overflow-hidden cursor-pointer relative" ref={containerRef} onClick={handleClick}
       style={{
-        background: 'linear-gradient(to bottom, #1a1412 0%, #2c1f1a 50%, #1a1412 100%)'
+        background: 'linear-gradient(to bottom, #1c1917 0%, #292524 50%, #1c1917 100%)'
       }}>
-      {/* Ornamental Damask Wallpaper Pattern */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none"
+      {/* Subtle Wall Texture */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(139, 92, 46, 0.3) 0%, transparent 50%),
-            repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(139, 92, 46, 0.1) 20px, rgba(139, 92, 46, 0.1) 40px),
-            repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(139, 92, 46, 0.1) 20px, rgba(139, 92, 46, 0.1) 40px)
-          `,
-          backgroundSize: '80px 80px, 80px 80px, 80px 80px'
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 3px),
+            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 3px)
+          `
         }}></div>
 
       {/* Ornate Crown Molding - Top */}
@@ -130,8 +128,8 @@ export default function MuseumPage() {
       
       {/* Museum Title */}
       <div className="text-center pt-20 pb-6 relative z-20">
-        <h1 className="text-5xl font-bold text-amber-300 mb-2 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>The Museum</h1>
-        <p className="text-amber-200/80 italic">Click left or right to walk through the gallery</p>
+        <h1 className="text-5xl font-bold text-stone-300 mb-2 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>The Museum</h1>
+        <p className="text-stone-400 italic">Click left or right to walk through the gallery</p>
       </div>
 
       {/* Museum Hallway Container */}
@@ -199,13 +197,13 @@ export default function MuseumPage() {
                 }}
               >
                 <div className="museum-frame" style={{
-                  width: isMain ? '500px' : `${500 - offset * 60}px`,
-                  height: isMain ? '400px' : `${400 - offset * 48}px`,
+                  maxWidth: isMain ? '600px' : `${600 - offset * 80}px`,
+                  maxHeight: isMain ? '500px' : `${500 - offset * 70}px`,
                 }}>
                   <img
                     src={painting.images[0]}
                     alt={painting.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     onError={(e) => {
                       e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23334155" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%2394a3b8" font-size="16"%3EImage not available%3C/text%3E%3C/svg%3E';
                     }}
