@@ -75,7 +75,7 @@ async function main() {
         title: "The Scream",
         description: "Iconic painting by Norwegian artist Edvard Munch.",
         history: "Created in 1893, expressing existential angst. Four versions exist - pastel and oil paintings.",
-        images: ["https://images.unsplash.com/photo-1549887534-1541e9326642?w=800"],
+        images: ["https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800"],
         category: "PAINTING",
         lastSoldPrice: 119900000,
         lastSoldDate: new Date("2012-05-02"),

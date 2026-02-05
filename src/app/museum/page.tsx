@@ -69,6 +69,10 @@ export default function MuseumPage() {
   }, [navigate]);
 
   const current = paintings[currentIndex];
+  const getPaintingAtIndex = (index: number) => {
+    if (paintings.length === 0) return null;
+    return paintings[(index % paintings.length + paintings.length) % paintings.length];
+  };
 
   if (paintings.length === 0) {
     return (
@@ -93,69 +97,80 @@ export default function MuseumPage() {
 
       {/* Museum Hallway Container */}
       <div className="relative h-[600px] overflow-hidden">
-        {/* Animated Background - Museum Hallway */}
-        <div className={`absolute inset-0 ${
+        {/* Animated Background - Museum Walls */}
+        <div className={`absolute inset-0 transition-transform duration-1200 ease-in-out ${
           isWalking 
             ? direction === "forward" 
-              ? "animate-walk-forward" 
-              : "animate-walk-backward"
+              ? "museum-hallway-forward" 
+              : "museum-hallway-backward"
             : ""
         }`}>
-          {/* Floor with moving tiles */}
-          <div className="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-amber-950/10 via-slate-900/50 to-transparent">
-            <div 
-              className="absolute inset-0 opacity-30 transition-all duration-1200 ease-in-out"
-              style={{
-                backgroundImage: `repeating-linear-gradient(
-                  90deg,
-                  transparent,
-                  transparent 100px,
-                  rgba(251, 191, 36, 0.1) 100px,
-                  rgba(251, 191, 36, 0.1) 102px
-                )`,
-                backgroundSize: '200px 100%',
-                backgroundPosition: isWalking 
-                  ? (direction === "forward" ? '-200px 0' : '200px 0')
-                  : '0 0',
-              }}
-            ></div>
+          {/* Floor */}
+          <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-amber-950/20 to-transparent">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `repeating-linear-gradient(90deg, 
+                transparent, transparent 50px, 
+                rgba(251, 191, 36, 0.05) 50px, 
+                rgba(251, 191, 36, 0.05) 51px)`,
+              transform: isWalking ? (direction === "forward" ? 'translateX(-50px)' : 'translateX(50px)') : 'translateX(0)',
+              transition: 'transform 1.2s ease-in-out'
+            }}></div>
           </div>
 
-          {/* Side walls with perspective */}
-          <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-slate-900 via-slate-800/50 to-transparent"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-slate-900 via-slate-800/50 to-transparent"></div>
+          {/* Left Wall */}
+          <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-slate-800/50 to-transparent"></div>
+          
+          {/* Right Wall */}
+          <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-slate-800/50 to-transparent"></div>
 
           {/* Ceiling */}
-          <div className="absolute top-0 w-full h-1/4 bg-gradient-to-b from-slate-900 via-slate-800/30 to-transparent"></div>
+          <div className="absolute top-0 w-full h-1/4 bg-gradient-to-b from-slate-900/80 to-transparent"></div>
         </div>
 
-        {/* Current Painting - Center */}
+        {/* Paintings on the walls */}
         <div className="relative h-full flex items-center justify-center">
-          <div 
-            className={`transition-all duration-1200 ease-in-out ${
-              isWalking 
-                ? "opacity-0 scale-90"
-                : "opacity-100 scale-100"
-            }`}
-            style={{ zIndex: 20 }}
-          >
-            {current?.images?.[0] ? (
-              <div className="museum-frame">
-                <img
-                  src={current.images[0]}
-                  alt={current.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="500" height="400"%3E%3Crect fill="%23334155" width="500" height="400"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%2394a3b8" font-size="20"%3EImage not available%3C/text%3E%3C/svg%3E';
-                  }}
-                />
+          {/* Show current painting and adjacent ones for parallax effect */}
+          {[-2, -1, 0, 1, 2].map((offset) => {
+            const painting = getPaintingAtIndex(currentIndex + offset);
+            if (!painting?.images?.[0]) return null;
+
+            const isCenter = offset === 0;
+            const distance = Math.abs(offset);
+            const side = offset < 0 ? 'left' : 'right';
+
+            return (
+              <div
+                key={`${painting.id}-${offset}`}
+                className={`absolute transition-all duration-1200 ease-in-out ${
+                  isWalking ? 'museum-painting-slide' : ''
+                }`}
+                style={{
+                  [side]: isCenter ? '50%' : `${20 + distance * 15}%`,
+                  transform: isCenter 
+                    ? 'translate(-50%, -50%) scale(1)' 
+                    : `translate(${offset < 0 ? '0' : '-100'}%, -50%) scale(${1 - distance * 0.3}) perspective(800px) rotateY(${offset < 0 ? '15deg' : '-15deg'})`,
+                  top: '50%',
+                  opacity: isCenter ? 1 : Math.max(0.3, 1 - distance * 0.3),
+                  zIndex: isCenter ? 20 : 10 - distance,
+                  filter: isCenter ? 'none' : `blur(${distance}px)`,
+                }}
+              >
+                <div className="museum-frame" style={{
+                  width: isCenter ? '500px' : `${400 - distance * 50}px`,
+                  height: isCenter ? '400px' : `${320 - distance * 40}px`,
+                }}>
+                  <img
+                    src={painting.images[0]}
+                    alt={painting.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23334155" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%2394a3b8" font-size="16"%3EImage not available%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
               </div>
-            ) : (
-              <div className="museum-frame bg-slate-700 flex items-center justify-center">
-                <p className="text-slate-400">No image available</p>
-              </div>
-            )}
-          </div>
+            );
+          })}
         </div>
 
         {/* Current Painting Info */}
@@ -179,8 +194,6 @@ export default function MuseumPage() {
 
       <style jsx>{`
         .museum-frame {
-          width: 500px;
-          height: 400px;
           padding: 20px;
           background: linear-gradient(145deg, #2a2520, #1a1510);
           box-shadow: 
@@ -192,42 +205,22 @@ export default function MuseumPage() {
           transition: all 1.2s ease-in-out;
         }
 
-        @keyframes walkForward {
-          0% { 
-            transform: scale(1); 
-            filter: blur(0px);
-          }
-          50% { 
-            transform: scale(1.1); 
-            filter: blur(2px);
-          }
-          100% { 
-            transform: scale(1); 
-            filter: blur(0px);
-          }
+        @keyframes hallwayForward {
+          0% { transform: translateZ(0); }
+          100% { transform: translateZ(-100px); }
         }
 
-        @keyframes walkBackward {
-          0% { 
-            transform: scale(1); 
-            filter: blur(0px);
-          }
-          50% { 
-            transform: scale(1.1); 
-            filter: blur(2px);
-          }
-          100% { 
-            transform: scale(1); 
-            filter: blur(0px);
-          }
+        @keyframes hallwayBackward {
+          0% { transform: translateZ(0); }
+          100% { transform: translateZ(100px); }
         }
 
-        .animate-walk-forward {
-          animation: walkForward 1.2s ease-in-out;
+        .museum-hallway-forward {
+          animation: hallwayForward 1.2s ease-in-out;
         }
 
-        .animate-walk-backward {
-          animation: walkBackward 1.2s ease-in-out;
+        .museum-hallway-backward {
+          animation: hallwayBackward 1.2s ease-in-out;
         }
       `}</style>
     </div>
