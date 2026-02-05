@@ -174,7 +174,7 @@ export default function MuseumPage() {
         {/* Paintings on the walls */}
         <div className="relative h-full flex items-center justify-center">
           {/* Show current painting (left) and next ones (to the right) */}
-          {[0, 1, 2, 3, 4].map((offset) => {
+          {[0, 1, 2].map((offset) => {
             const painting = getPaintingAtIndex(currentIndex + offset);
             if (!painting?.images?.[0]) return null;
 
@@ -186,19 +186,19 @@ export default function MuseumPage() {
                 key={`${painting.id}-${offset}`}
                 className={`absolute transition-all duration-1200 ease-in-out flex items-center justify-center`}
                 style={{
-                  left: isMain ? '12%' : `${12 + offset * 24}%`,
+                  left: isMain ? '12%' : `${12 + offset * 30}%`,
                   transform: isMain 
                     ? 'translateY(-50%) scale(1)' 
-                    : `translateY(-50%) scale(${1 - offset * 0.18}) perspective(1000px) rotateY(-${offset * 12}deg)`,
+                    : `translateY(-50%) scale(${1 - offset * 0.25}) perspective(1200px) rotateY(-${offset * 18}deg)`,
                   top: '50%',
-                  opacity: isMain ? 1 : Math.max(0.3, 1 - offset * 0.2),
+                  opacity: isMain ? 1 : Math.max(0.25, 1 - offset * 0.35),
                   zIndex: 20 - offset,
-                  filter: isMain ? 'none' : `blur(${offset * 0.8}px)`,
+                  filter: isMain ? 'none' : `blur(${offset * 1.2}px) brightness(${1 - offset * 0.3})`,
                 }}
               >
                 <div className="museum-frame" style={{
-                  maxWidth: isMain ? '420px' : `${420 - offset * 70}px`,
-                  maxHeight: isMain ? '380px' : `${380 - offset * 65}px`,
+                  maxWidth: isMain ? '420px' : `${420 - offset * 90}px`,
+                  maxHeight: isMain ? '380px' : `${380 - offset * 85}px`,
                 }}>
                   <img
                     src={painting.images[0]}
