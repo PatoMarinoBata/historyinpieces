@@ -86,18 +86,36 @@ export default function MuseumPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 overflow-hidden cursor-pointer" ref={containerRef} onClick={handleClick}>
+    <div className="min-h-screen overflow-hidden cursor-pointer relative" ref={containerRef} onClick={handleClick}
+      style={{
+        background: 'linear-gradient(to bottom, #2d1810 0%, #4a2d1f 50%, #2d1810 100%)'
+      }}>
+      {/* Museum Wall Texture */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.1) 2px, rgba(0,0,0,.1) 3px),
+            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.05) 2px, rgba(0,0,0,.05) 3px)
+          `
+        }}></div>
+
+      {/* Crown Molding - Top */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-amber-900/40 to-transparent border-b border-amber-700/30 z-10"></div>
+      
+      {/* Baseboard - Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-amber-950/60 to-transparent border-t border-amber-800/40 z-10"></div>
+
       <TopNav />
       
       {/* Museum Title */}
       <div className="text-center pt-20 pb-6 relative z-20">
-        <h1 className="text-5xl font-bold text-amber-400 mb-2">The Museum</h1>
-        <p className="text-slate-400 italic">Click left or right to walk through the gallery</p>
+        <h1 className="text-5xl font-bold text-amber-200 mb-2 drop-shadow-lg">The Museum</h1>
+        <p className="text-amber-100/70 italic">Click left or right to walk through the gallery</p>
       </div>
 
       {/* Museum Hallway Container */}
       <div className="relative h-[600px] overflow-hidden">
-        {/* Animated Background - Museum Walls */}
+        {/* Animated Background - Museum Elements */}
         <div className={`absolute inset-0 transition-transform duration-1200 ease-in-out ${
           isWalking 
             ? direction === "forward" 
@@ -105,26 +123,35 @@ export default function MuseumPage() {
               : "museum-hallway-backward"
             : ""
         }`}>
-          {/* Floor */}
-          <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-amber-950/20 to-transparent">
+          {/* Marble Floor */}
+          <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-stone-300/20 via-stone-200/10 to-transparent">
             <div className="absolute inset-0" style={{
-              backgroundImage: `repeating-linear-gradient(90deg, 
-                transparent, transparent 50px, 
-                rgba(251, 191, 36, 0.05) 50px, 
-                rgba(251, 191, 36, 0.05) 51px)`,
-              transform: isWalking ? (direction === "forward" ? 'translateX(-50px)' : 'translateX(50px)') : 'translateX(0)',
+              backgroundImage: `
+                repeating-linear-gradient(90deg, 
+                  transparent, transparent 100px, 
+                  rgba(255, 255, 255, 0.08) 100px, 
+                  rgba(255, 255, 255, 0.08) 101px,
+                  transparent 101px, transparent 200px
+                ),
+                repeating-linear-gradient(0deg,
+                  transparent, transparent 150px,
+                  rgba(255, 255, 255, 0.05) 150px,
+                  rgba(255, 255, 255, 0.05) 151px,
+                  transparent 151px, transparent 300px
+                )
+              `,
+              transform: isWalking ? (direction === "forward" ? 'translateX(-100px)' : 'translateX(100px)') : 'translateX(0)',
               transition: 'transform 1.2s ease-in-out'
             }}></div>
           </div>
 
-          {/* Left Wall */}
-          <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-slate-800/50 to-transparent"></div>
-          
-          {/* Right Wall */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-slate-800/50 to-transparent"></div>
+          {/* Ambient Museum Lighting from ceiling */}
+          <div className="absolute top-0 left-1/4 right-1/4 h-32 bg-amber-200/5 blur-3xl"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-48 bg-amber-100/10 blur-2xl rounded-full"></div>
 
-          {/* Ceiling */}
-          <div className="absolute top-0 w-full h-1/4 bg-gradient-to-b from-slate-900/80 to-transparent"></div>
+          {/* Side Wall Shadows */}
+          <div className="absolute left-0 top-0 bottom-0 w-1/5 bg-gradient-to-r from-black/40 to-transparent"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-1/5 bg-gradient-to-l from-black/40 to-transparent"></div>
         </div>
 
         {/* Paintings on the walls */}
