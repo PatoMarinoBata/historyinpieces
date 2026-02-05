@@ -34,7 +34,7 @@ async function main() {
         title: "Mona Lisa",
         description: "A portrait by Leonardo da Vinci, arguably the most famous painting in the world.",
         history: "Painted between 1503 and 1506. Acquired by King Francis I and later moved to the Louvre.",
-        images: ["https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?w=800"],
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1517-01-01", owner: "King Francis I of France" },
@@ -45,7 +45,7 @@ async function main() {
         title: "The Starry Night",
         description: "An oil-on-canvas painting by Vincent van Gogh.",
         history: "Painted in June 1889, depicting the view from his asylum room in Saint-Rémy-de-Provence.",
-        images: ["https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800"],
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/800px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1941-01-01", owner: "Museum of Modern Art, New York" }
@@ -55,7 +55,7 @@ async function main() {
         title: "Girl with a Pearl Earring",
         description: "Oil painting by Dutch Golden Age painter Johannes Vermeer.",
         history: "Created around 1665, often referred to as 'the Mona Lisa of the North'. Housed in the Mauritshuis museum.",
-        images: ["https://images.unsplash.com/photo-1579541814924-49fef17c5be5?w=800"],
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1902-01-01", owner: "Mauritshuis, The Hague" }
@@ -65,7 +65,7 @@ async function main() {
         title: "The Last Supper",
         description: "Mural painting by Leonardo da Vinci depicting Jesus's final meal with his apostles.",
         history: "Painted between 1495-1498 on the wall of Santa Maria delle Grazie in Milan. One of the most recognized works in Western art.",
-        images: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"],
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/1024px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1498-01-01", owner: "Santa Maria delle Grazie, Milan" }
@@ -75,7 +75,7 @@ async function main() {
         title: "The Scream",
         description: "Iconic painting by Norwegian artist Edvard Munch.",
         history: "Created in 1893, expressing existential angst. Four versions exist - pastel and oil paintings.",
-        images: ["https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800"],
+        images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg"],
         category: "PAINTING",
         lastSoldPrice: 119900000,
         lastSoldDate: new Date("2012-05-02"),
