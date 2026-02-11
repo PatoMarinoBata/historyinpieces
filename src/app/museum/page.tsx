@@ -89,34 +89,29 @@ export default function MuseumPage() {
   return (
     <div className="min-h-screen overflow-hidden cursor-pointer relative" ref={containerRef} onClick={handleClick}
       style={{
-        background: 'linear-gradient(to bottom, #e8dfd0 0%, #f5f0e8 50%, #e8dfd0 100%)'
+        background: 'linear-gradient(to bottom, #1c1917 0%, #292524 50%, #1c1917 100%)'
       }}>
-      {/* Museum Wall Texture */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none"
+      {/* Subtle Wall Texture */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,.02) 1px, rgba(0,0,0,.02) 2px),
-            repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(0,0,0,.015) 1px, rgba(0,0,0,.015) 2px)
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 3px),
+            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 3px)
           `
         }}></div>
 
-      {/* Ceiling Shadow */}
-      <div className="absolute top-0 left-0 right-0 h-24 z-10 bg-gradient-to-b from-black/10 to-transparent"></div>
+      {/* Crown Molding - Top */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-amber-900/40 to-transparent border-b border-amber-700/30 z-10"></div>
       
-      {/* Floor */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 z-10 bg-gradient-to-t from-amber-900/10 to-transparent">
-        <div className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 150px, rgba(101, 67, 33, 0.1) 150px, rgba(101, 67, 33, 0.1) 151px)'
-          }}></div>
-      </div>
+      {/* Baseboard - Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-amber-950/60 to-transparent border-t border-amber-800/40 z-10"></div>
 
       <TopNav />
       
       {/* Museum Title */}
       <div className="text-center pt-20 pb-6 relative z-20">
-        <h1 className="text-5xl font-bold text-stone-700 mb-2 drop-shadow-sm" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.1)'}}>The Museum</h1>
-        <p className="text-stone-600 italic">Click left or right to walk through the gallery</p>
+        <h1 className="text-5xl font-bold text-amber-200 mb-2 drop-shadow-lg">The Museum</h1>
+        <p className="text-amber-100/70 italic">Click left or right to walk through the gallery</p>
       </div>
 
       {/* Museum Hallway Container */}
