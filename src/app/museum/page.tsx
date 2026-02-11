@@ -181,11 +181,12 @@ export default function MuseumPage() {
             const isMain = offset === 0;
             const distance = offset;
             
-            // Tilt: first two paintings have perspective, third is straight
+            // Tilt: perspective from left side of hall - left side of each painting appears bigger
+            // Tilt increases as paintings get further away
             const getTilt = () => {
-              if (offset === 0) return 'rotateY(8deg)';
-              if (offset === 1) return 'rotateY(15deg)';
-              return 'rotateY(0deg)'; // Third painting is straight
+              if (offset === 0) return 'rotateY(6deg)';   // Closest painting
+              if (offset === 1) return 'rotateY(12deg)';  // Middle distance
+              return 'rotateY(18deg)';                     // Furthest away
             };
 
             return (
