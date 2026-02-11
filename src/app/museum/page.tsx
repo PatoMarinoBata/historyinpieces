@@ -210,19 +210,18 @@ export default function MuseumPage() {
                   filter: isMain ? 'none' : `blur(${offset * 1.2}px) brightness(${1 - offset * 0.3})`,
                 }}
               >
-                <div className="museum-frame flex items-center justify-center" style={{
-                  maxWidth: isMain ? '420px' : `${420 - offset * 90}px`,
-                  maxHeight: isMain ? '380px' : `${380 - offset * 85}px`,
-                }}>
-                  <img
-                    src={painting.images[0]}
-                    alt={painting.title}
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23334155" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%2394a3b8" font-size="16"%3EImage not available%3C/text%3E%3C/svg%3E';
-                    }}
-                  />
-                </div>
+                <img
+                  src={painting.images[0]}
+                  alt={painting.title}
+                  className="object-contain"
+                  style={{
+                    maxWidth: isMain ? '420px' : `${420 - offset * 90}px`,
+                    maxHeight: isMain ? '380px' : `${380 - offset * 85}px`,
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23334155" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" fill="%2394a3b8" font-size="16"%3EImage not available%3C/text%3E%3C/svg%3E';
+                  }}
+                />
               </div>
             );
           })}
@@ -230,8 +229,8 @@ export default function MuseumPage() {
 
         {/* Current Painting Info */}
         {current && (
-          <div className="absolute bottom-8 left-0 text-left max-w-xs px-4 z-30">
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">{current.title}</h2>
+          <div className="absolute bottom-8 left-[12%] text-left max-w-md px-4 z-30">
+            <h2 className="text-3xl font-bold text-slate-100 mb-2">{current.title}</h2>
             <p className="text-slate-400 text-sm">{current.description}</p>
           </div>
         )}
@@ -248,18 +247,6 @@ export default function MuseumPage() {
       </div>
 
       <style jsx>{`
-        .museum-frame {
-          padding: 20px;
-          background: linear-gradient(145deg, #2a2520, #1a1510);
-          box-shadow: 
-            inset 0 2px 4px rgba(255, 255, 255, 0.1),
-            0 20px 60px rgba(0, 0, 0, 0.7),
-            0 0 100px rgba(251, 191, 36, 0.1);
-          border: 3px solid #4a3f2f;
-          position: relative;
-          transition: all 1.2s ease-in-out;
-        }
-
         @keyframes hallwayForward {
           0% { transform: translateZ(0); }
           100% { transform: translateZ(-100px); }
