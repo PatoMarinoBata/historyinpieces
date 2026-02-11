@@ -183,8 +183,8 @@ export default function MuseumPage() {
             
             // Tilt: first two paintings have perspective, third is straight
             const getTilt = () => {
-              if (offset === 0) return 'rotateY(-8deg)';
-              if (offset === 1) return 'rotateY(-15deg)';
+              if (offset === 0) return 'rotateY(8deg)';
+              if (offset === 1) return 'rotateY(15deg)';
               return 'rotateY(0deg)'; // Third painting is straight
             };
 
