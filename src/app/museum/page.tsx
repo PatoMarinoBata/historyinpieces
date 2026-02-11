@@ -189,12 +189,19 @@ export default function MuseumPage() {
               return 'rotateY(18deg)';                     // Furthest away
             };
 
+            // Custom positioning: 2nd painting closer to 3rd
+            const getLeftPosition = () => {
+              if (offset === 0) return '12%';
+              if (offset === 1) return '48%';  // Further from 1st
+              return '72%';                    // Closer to 2nd
+            };
+
             return (
               <div
                 key={`${painting.id}-${offset}`}
                 className={`absolute transition-all duration-1200 ease-in-out`}
                 style={{
-                  left: isMain ? '12%' : `${12 + offset * 30}%`,
+                  left: getLeftPosition(),
                   top: '50%',
                   transform: `translate(0, -50%) scale(${1 - offset * 0.25}) perspective(1200px) ${getTilt()}`,
                   transformOrigin: 'center center',
