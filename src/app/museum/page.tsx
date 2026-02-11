@@ -180,6 +180,13 @@ export default function MuseumPage() {
 
             const isMain = offset === 0;
             const distance = offset;
+            
+            // Tilt: first two paintings have perspective, third is straight
+            const getTilt = () => {
+              if (offset === 0) return 'rotateY(-8deg)';
+              if (offset === 1) return 'rotateY(-15deg)';
+              return 'rotateY(0deg)'; // Third painting is straight
+            };
 
             return (
               <div
@@ -187,9 +194,7 @@ export default function MuseumPage() {
                 className={`absolute transition-all duration-1200 ease-in-out flex items-center justify-center`}
                 style={{
                   left: isMain ? '12%' : `${12 + offset * 30}%`,
-                  transform: isMain 
-                    ? 'translateY(-50%) scale(1)' 
-                    : `translateY(-50%) scale(${1 - offset * 0.25}) perspective(1200px) rotateY(-${offset * 18}deg)`,
+                  transform: `translateY(-50%) scale(${1 - offset * 0.25}) perspective(1200px) ${getTilt()}`,
                   top: '50%',
                   opacity: isMain ? 1 : Math.max(0.25, 1 - offset * 0.35),
                   zIndex: 20 - offset,
