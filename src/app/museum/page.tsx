@@ -192,17 +192,18 @@ export default function MuseumPage() {
             return (
               <div
                 key={`${painting.id}-${offset}`}
-                className={`absolute transition-all duration-1200 ease-in-out flex items-center justify-center`}
+                className={`absolute transition-all duration-1200 ease-in-out`}
                 style={{
                   left: isMain ? '12%' : `${12 + offset * 30}%`,
-                  transform: `translateY(-50%) scale(${1 - offset * 0.25}) perspective(1200px) ${getTilt()}`,
                   top: '50%',
+                  transform: `translate(0, -50%) scale(${1 - offset * 0.25}) perspective(1200px) ${getTilt()}`,
+                  transformOrigin: 'center center',
                   opacity: isMain ? 1 : Math.max(0.25, 1 - offset * 0.35),
                   zIndex: 20 - offset,
                   filter: isMain ? 'none' : `blur(${offset * 1.2}px) brightness(${1 - offset * 0.3})`,
                 }}
               >
-                <div className="museum-frame" style={{
+                <div className="museum-frame flex items-center justify-center" style={{
                   maxWidth: isMain ? '420px' : `${420 - offset * 90}px`,
                   maxHeight: isMain ? '380px' : `${380 - offset * 85}px`,
                 }}>
