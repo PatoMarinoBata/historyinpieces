@@ -89,47 +89,29 @@ export default function MuseumPage() {
   return (
     <div className="min-h-screen overflow-hidden cursor-pointer relative" ref={containerRef} onClick={handleClick}
       style={{
-        background: 'linear-gradient(to bottom, #1c1917 0%, #292524 50%, #1c1917 100%)'
+        background: 'linear-gradient(to bottom, #0f172a 0%, #1e293b 40%, #334155 50%, #1e293b 60%, #0f172a 100%)'
       }}>
       {/* Subtle Wall Texture */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none"
+      <div className="absolute inset-0 opacity-15 pointer-events-none"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 3px),
-            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 3px)
+            repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,.03) 3px, rgba(255,255,255,.03) 4px),
+            repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(255,255,255,.02) 3px, rgba(255,255,255,.02) 4px)
           `
         }}></div>
 
-      {/* Ornate Crown Molding - Top */}
-      <div className="absolute top-0 left-0 right-0 h-16 z-10 border-b-2 border-amber-900/50"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(101, 67, 33, 0.4) 0%, rgba(139, 92, 46, 0.3) 50%, transparent 100%)',
-          boxShadow: '0 8px 16px rgba(0,0,0,0.3)'
-        }}>
-        <div className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(251, 191, 36, 0.2) 40px, rgba(251, 191, 36, 0.2) 42px)'
-          }}></div>
-      </div>
+      {/* Simple Top Border */}
+      <div className="absolute top-0 left-0 right-0 h-2 z-10 bg-gradient-to-b from-slate-700/30 to-transparent"></div>
       
-      {/* Wainscoting Panel Design - Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 z-10 border-t-2 border-amber-900/50"
-        style={{
-          background: 'linear-gradient(to top, rgba(58, 38, 19, 0.6) 0%, rgba(101, 67, 33, 0.4) 60%, transparent 100%)'
-        }}>
-        <div className="absolute top-2 left-0 right-0 h-1 bg-amber-800/30"></div>
-        <div className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(139, 92, 46, 0.3) 120px, rgba(139, 92, 46, 0.3) 122px, transparent 122px, transparent 240px, rgba(139, 92, 46, 0.3) 240px)'
-          }}></div>
-      </div>
+      {/* Simple Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-2 z-10 bg-gradient-to-t from-slate-700/30 to-transparent"></div>
 
       <TopNav />
       
       {/* Museum Title */}
       <div className="text-center pt-20 pb-6 relative z-20">
-        <h1 className="text-5xl font-bold text-stone-300 mb-2 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>The Museum</h1>
-        <p className="text-stone-400 italic">Click left or right to walk through the gallery</p>
+        <h1 className="text-5xl font-bold text-slate-200 mb-2 drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>The Museum</h1>
+        <p className="text-slate-400 italic">Click left or right to walk through the gallery</p>
       </div>
 
       {/* Museum Hallway Container */}
