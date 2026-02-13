@@ -125,11 +125,11 @@ export default function DocumentsPage() {
       <div className="fixed inset-0 opacity-30 z-0" style={{ backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(139, 69, 19, .3) 25%, rgba(139, 69, 19, .3) 26%, transparent 27%, transparent 74%, rgba(139, 69, 19, .3) 75%, rgba(139, 69, 19, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(139, 69, 19, .3) 25%, rgba(139, 69, 19, .3) 26%, transparent 27%, transparent 74%, rgba(139, 69, 19, .3) 75%, rgba(139, 69, 19, .3) 76%, transparent 77%, transparent)', backgroundSize: '50px 50px' }}></div>
       <div className="fixed inset-0 bg-gradient-to-t from-yellow-900/40 via-transparent to-orange-900/30 z-0"></div>
       
-      <div className="relative z-10">
-        <TopNav />
+      <TopNav />
+      <div className="relative z-10 pt-16">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-amber-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] font-serif">Historic Documents</h1>
-        <div
+          <div
           className="relative h-auto mb-8"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -191,17 +191,17 @@ export default function DocumentsPage() {
               </div>
             </>
           )}
-        </div>
-        <div className="text-center py-12">
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          </div>
+          <div className="text-center py-12">
+            <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Home</Link>
             <Link href="/paintings" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Paintings</Link>
             <Link href="/cars" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Cars</Link>
             <Link href="/statues" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Statues</Link>
             <Link href="/collectibles" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Collectibles</Link>
+            </div>
           </div>
-        </div>
-        <style jsx>{`
+          <style jsx>{`
           .slide-cycle.ltr.manual { animation: slideInLtr 0.6s ease-in-out both; }
           .slide-cycle.rtl.manual { animation: slideInRtl 0.6s ease-in-out both; }
           .slide-cycle.ltr.auto { animation: slideCycleLtr 8s ease-in-out both; }
@@ -223,6 +223,7 @@ export default function DocumentsPage() {
           @keyframes slideCycleLtr { 0% { opacity: 0; transform: translateX(-48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(48px); } }
           @keyframes slideCycleRtl { 0% { opacity: 0; transform: translateX(48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-48px); } }
         `}</style>
+        </div>
       </div>
     </div>
   );

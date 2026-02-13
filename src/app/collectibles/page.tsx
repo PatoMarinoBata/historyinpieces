@@ -125,11 +125,11 @@ export default function CollectiblesPage() {
       <div className="fixed inset-0 opacity-20 z-0" style={{ backgroundImage: 'radial-gradient(circle at 25% 25%, gold 2px, transparent 2px), radial-gradient(circle at 75% 75%, gold 2px, transparent 2px)', backgroundSize: '50px 50px' }}></div>
       <div className="fixed inset-0 bg-gradient-to-t from-amber-900/30 via-transparent to-purple-900/30 z-0"></div>
       
-      <div className="relative z-10">
-        <TopNav />
+      <TopNav />
+      <div className="relative z-10 pt-16">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-amber-200 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]">Rare Collectibles</h1>
-        <div
+          <div
           className="relative h-auto mb-8"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -191,17 +191,17 @@ export default function CollectiblesPage() {
               </div>
             </>
           )}
-        </div>
-        <div className="text-center py-12">
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          </div>
+          <div className="text-center py-12">
+            <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Home</Link>
             <Link href="/paintings" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Paintings</Link>
             <Link href="/cars" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Cars</Link>
             <Link href="/statues" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Statues</Link>
             <Link href="/documents" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Documents</Link>
+            </div>
           </div>
-        </div>
-        <style jsx>{`
+          <style jsx>{`
           .slide-cycle.ltr.manual { animation: slideInLtr 0.6s ease-in-out both; }
           .slide-cycle.rtl.manual { animation: slideInRtl 0.6s ease-in-out both; }
           .slide-cycle.ltr.auto { animation: slideCycleLtr 8s ease-in-out both; }
@@ -223,6 +223,7 @@ export default function CollectiblesPage() {
           @keyframes slideCycleLtr { 0% { opacity: 0; transform: translateX(-48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(48px); } }
           @keyframes slideCycleRtl { 0% { opacity: 0; transform: translateX(48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-48px); } }
         `}</style>
+        </div>
       </div>
     </div>
   );

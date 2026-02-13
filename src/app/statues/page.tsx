@@ -125,11 +125,11 @@ export default function StatuesPage() {
       <div className="fixed inset-0 opacity-40 z-0" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.5) 10px, rgba(255,255,255,.5) 20px)' }}></div>
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-stone-400/20 to-stone-500/30 z-0"></div>
       
-      <div className="relative z-10">
-        <TopNav />
+      <TopNav />
+      <div className="relative z-10 pt-16">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-stone-800 drop-shadow-md">Historic Statues</h1>
-        <div
+          <div
           className="relative h-auto mb-8"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -191,17 +191,17 @@ export default function StatuesPage() {
               </div>
             </>
           )}
-        </div>
-        <div className="text-center py-12">
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          </div>
+          <div className="text-center py-12">
+            <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/" className="inline-block bg-stone-700 hover:bg-stone-600 text-stone-100 px-6 py-2 rounded-lg font-semibold transition border border-stone-500 shadow-lg">Home</Link>
             <Link href="/paintings" className="inline-block bg-stone-700 hover:bg-stone-600 text-stone-100 px-6 py-2 rounded-lg font-semibold transition border border-stone-500 shadow-lg">Paintings</Link>
             <Link href="/cars" className="inline-block bg-stone-700 hover:bg-stone-600 text-stone-100 px-6 py-2 rounded-lg font-semibold transition border border-stone-500 shadow-lg">Cars</Link>
             <Link href="/collectibles" className="inline-block bg-stone-700 hover:bg-stone-600 text-stone-100 px-6 py-2 rounded-lg font-semibold transition border border-stone-500 shadow-lg">Collectibles</Link>
             <Link href="/documents" className="inline-block bg-stone-700 hover:bg-stone-600 text-stone-100 px-6 py-2 rounded-lg font-semibold transition border border-stone-500 shadow-lg">Documents</Link>
+            </div>
           </div>
-        </div>
-        <style jsx>{`
+          <style jsx>{`
           .slide-cycle.ltr.manual { animation: slideInLtr 0.6s ease-in-out both; }
           .slide-cycle.rtl.manual { animation: slideInRtl 0.6s ease-in-out both; }
           .slide-cycle.ltr.auto { animation: slideCycleLtr 8s ease-in-out both; }
@@ -223,6 +223,7 @@ export default function StatuesPage() {
           @keyframes slideCycleLtr { 0% { opacity: 0; transform: translateX(-48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(48px); } }
           @keyframes slideCycleRtl { 0% { opacity: 0; transform: translateX(48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-48px); } }
         `}</style>
+        </div>
       </div>
     </div>
   );
