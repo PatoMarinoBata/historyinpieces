@@ -166,7 +166,7 @@ export default function MuseumPage() {
             // Tilt: perspective from left side of hall - left side of each painting appears bigger
             // Tilt increases as paintings get further away
             const getTilt = () => {
-              if (offset === 0) return 'rotateY(30deg)';   // Closest painting
+              if (offset === 0) return 'rotateY(0deg)';    // Main painting - no tilt
               if (offset === 1) return 'rotateY(40deg)';  // Middle distance
               return 'rotateY(50deg)';                     // Furthest away
             };
