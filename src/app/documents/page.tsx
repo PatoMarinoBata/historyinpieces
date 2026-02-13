@@ -120,15 +120,18 @@ export default function DocumentsPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Ancient library background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-amber-950 via-orange-950 to-amber-900 z-0"></div>
-      <div className="fixed inset-0 opacity-30 z-0" style={{ backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(139, 69, 19, .3) 25%, rgba(139, 69, 19, .3) 26%, transparent 27%, transparent 74%, rgba(139, 69, 19, .3) 75%, rgba(139, 69, 19, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(139, 69, 19, .3) 25%, rgba(139, 69, 19, .3) 26%, transparent 27%, transparent 74%, rgba(139, 69, 19, .3) 75%, rgba(139, 69, 19, .3) 76%, transparent 77%, transparent)', backgroundSize: '50px 50px' }}></div>
-      <div className="fixed inset-0 bg-gradient-to-t from-yellow-900/40 via-transparent to-orange-900/30 z-0"></div>
+      {/* Ancient library / archive background */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1920&q=80)' }}
+      ></div>
+      <div className="fixed inset-0 bg-black/50 z-0"></div>
       
       <TopNav />
       <div className="relative z-10 pt-16">
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-amber-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] font-serif">Historic Documents</h1>
+          <h1 className="text-4xl md:text-5xl font-semibold text-center mb-1 text-slate-100 drop-shadow-lg font-serif tracking-wide">Historic Documents</h1>
+          <p className="text-sm md:text-base text-slate-300 italic text-center mb-8">Original manuscripts that shaped history</p>
           <div
           className="relative h-auto mb-8"
           onPointerDown={handlePointerDown}
@@ -137,9 +140,9 @@ export default function DocumentsPage() {
           style={{ touchAction: "pan-y" }}
         >
           {loading ? (
-            <div className="text-center py-20 text-amber-300/70">Loading documents...</div>
+            <div className="text-center py-20 text-slate-300">Loading documents...</div>
           ) : pieces.length === 0 ? (
-            <div className="text-center py-20 text-amber-300/70">No documents found.</div>
+            <div className="text-center py-20 text-slate-300">No documents found.</div>
           ) : (
             <>
               <div className="relative flex items-center justify-center" style={{ minHeight: "400px" }}>
@@ -172,20 +175,20 @@ export default function DocumentsPage() {
                   const previousPiece = getPieceAtIndex(previousIndex);
                   return (
                     <div key={`desc-exit-${previousIndex}`} className={`absolute inset-0 desc-exit ${slideDirection}`}>
-                      <div className="bg-gradient-to-b from-amber-100/95 to-orange-100/95 backdrop-blur-sm rounded-lg border border-amber-800/50 p-4 shadow-2xl">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-amber-950 font-serif">{previousPiece?.title}</h2>
-                        <p className="text-amber-900 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{previousPiece?.description}</p>
-                        <p className="text-amber-800 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-amber-950">History:</strong> {previousPiece?.history}</p>
+                      <div className="bg-gradient-to-b from-slate-800/95 to-slate-900/95 backdrop-blur-sm rounded-lg border border-slate-600 p-4 shadow-2xl">
+                        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{previousPiece?.title}</h2>
+                        <p className="text-slate-200 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{previousPiece?.description}</p>
+                        <p className="text-slate-300 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-slate-100">History:</strong> {previousPiece?.history}</p>
                       </div>
                     </div>
                   );
                 })()}
                 <div key={`desc-${current?.id ?? currentIndex}-${animationKey}`} className={`desc-transition ${slideDirection} ${slideMode}`}>
-                  <div className="bg-gradient-to-b from-amber-100/95 to-orange-100/95 backdrop-blur-sm rounded-lg border border-amber-800/50 p-4 shadow-2xl">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-amber-950 font-serif">{current?.title}</h2>
-                    <p className="text-amber-900 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{current?.description}</p>
-                    <p className="text-amber-800 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-amber-950">History:</strong> {current?.history}</p>
-                    <Link href={`/pieces/${current?.id}`} className="inline-block bg-amber-900 hover:bg-amber-800 text-amber-50 px-6 py-3 rounded-lg font-semibold transition shadow-lg border border-amber-700">View Full Details</Link>
+                  <div className="bg-gradient-to-b from-slate-800/95 to-slate-900/95 backdrop-blur-sm rounded-lg border border-slate-600 p-4 shadow-2xl">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{current?.title}</h2>
+                    <p className="text-slate-200 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{current?.description}</p>
+                    <p className="text-slate-300 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-slate-100">History:</strong> {current?.history}</p>
+                    <Link href={`/pieces/${current?.id}`} className="inline-block bg-amber-600 hover:bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-semibold transition shadow-lg">View Full Details</Link>
                   </div>
                 </div>
               </div>
@@ -194,11 +197,11 @@ export default function DocumentsPage() {
           </div>
           <div className="text-center py-12">
             <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Home</Link>
-            <Link href="/paintings" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Paintings</Link>
-            <Link href="/cars" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Cars</Link>
-            <Link href="/statues" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Statues</Link>
-            <Link href="/collectibles" className="inline-block bg-amber-900/80 hover:bg-amber-800 text-amber-50 px-6 py-2 rounded-lg font-semibold transition border border-amber-700 shadow-lg">Collectibles</Link>
+            <Link href="/" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-500 shadow-lg">Home</Link>
+            <Link href="/paintings" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-500 shadow-lg">Paintings</Link>
+            <Link href="/cars" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-500 shadow-lg">Cars</Link>
+            <Link href="/statues" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-500 shadow-lg">Statues</Link>
+            <Link href="/collectibles" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-500 shadow-lg">Collectibles</Link>
             </div>
           </div>
           <style jsx>{`
