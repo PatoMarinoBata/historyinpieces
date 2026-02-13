@@ -119,10 +119,16 @@ export default function CollectiblesPage() {
   const next = getPieceAtIndex(currentIndex + 1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <TopNav />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-slate-100">Historic Collectibles</h1>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Treasure vault background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-950 via-indigo-950 to-violet-900 z-0"></div>
+      <div className="fixed inset-0 opacity-20 z-0" style={{ backgroundImage: 'radial-gradient(circle at 25% 25%, gold 2px, transparent 2px), radial-gradient(circle at 75% 75%, gold 2px, transparent 2px)', backgroundSize: '50px 50px' }}></div>
+      <div className="fixed inset-0 bg-gradient-to-t from-amber-900/30 via-transparent to-purple-900/30 z-0"></div>
+      
+      <div className="relative z-10">
+        <TopNav />
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-amber-200 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]">Rare Collectibles</h1>
         <div
           className="relative h-auto mb-8"
           onPointerDown={handlePointerDown}
@@ -131,9 +137,9 @@ export default function CollectiblesPage() {
           style={{ touchAction: "pan-y" }}
         >
           {loading ? (
-            <div className="text-center py-20 text-slate-400">Loading collectibles...</div>
+            <div className="text-center py-20 text-amber-300/70">Loading collectibles...</div>
           ) : pieces.length === 0 ? (
-            <div className="text-center py-20 text-slate-400">No collectibles found.</div>
+            <div className="text-center py-20 text-amber-300/70">No collectibles found.</div>
           ) : (
             <>
               <div className="relative flex items-center justify-center" style={{ minHeight: "400px" }}>
@@ -166,20 +172,20 @@ export default function CollectiblesPage() {
                   const previousPiece = getPieceAtIndex(previousIndex);
                   return (
                     <div key={`desc-exit-${previousIndex}`} className={`absolute inset-0 desc-exit ${slideDirection}`}>
-                      <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{previousPiece?.title}</h2>
-                        <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{previousPiece?.description}</p>
-                        <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-slate-300">History:</strong> {previousPiece?.history}</p>
+                      <div className="bg-gradient-to-b from-purple-900/95 to-indigo-950/95 backdrop-blur-sm rounded-lg border border-amber-500/40 p-4 shadow-[0_0_20px_rgba(251,191,36,0.2)]">
+                        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-amber-100">{previousPiece?.title}</h2>
+                        <p className="text-amber-200/90 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{previousPiece?.description}</p>
+                        <p className="text-amber-300/70 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-amber-200">History:</strong> {previousPiece?.history}</p>
                       </div>
                     </div>
                   );
                 })()}
                 <div key={`desc-${current?.id ?? currentIndex}-${animationKey}`} className={`desc-transition ${slideDirection} ${slideMode}`}>
-                  <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-lg border border-slate-700 p-4 shadow-lg">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-slate-100">{current?.title}</h2>
-                    <p className="text-slate-300 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{current?.description}</p>
-                    <p className="text-slate-400 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-slate-300">History:</strong> {current?.history}</p>
-                    <Link href={`/pieces/${current?.id}`} className="inline-block bg-amber-600 hover:bg-amber-500 text-slate-900 px-6 py-3 rounded-lg font-semibold transition">View Full Details</Link>
+                  <div className="bg-gradient-to-b from-purple-900/95 to-indigo-950/95 backdrop-blur-sm rounded-lg border border-amber-500/40 p-4 shadow-[0_0_20px_rgba(251,191,36,0.2)]">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-3 text-amber-100">{current?.title}</h2>
+                    <p className="text-amber-200/90 mb-4 text-sm md:text-base leading-relaxed max-h-20 overflow-y-auto">{current?.description}</p>
+                    <p className="text-amber-300/70 text-xs md:text-sm mb-4 max-h-16 overflow-y-auto leading-relaxed"><strong className="text-amber-200">History:</strong> {current?.history}</p>
+                    <Link href={`/pieces/${current?.id}`} className="inline-block bg-amber-600 hover:bg-amber-500 text-purple-950 px-6 py-3 rounded-lg font-semibold transition shadow-[0_0_15px_rgba(251,191,36,0.4)]">View Full Details</Link>
                   </div>
                 </div>
               </div>
@@ -188,11 +194,11 @@ export default function CollectiblesPage() {
         </div>
         <div className="text-center py-12">
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-600">Home</Link>
-            <Link href="/paintings" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-600">Paintings</Link>
-            <Link href="/cars" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-600">Cars</Link>
-            <Link href="/statues" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-600">Statues</Link>
-            <Link href="/documents" className="inline-block bg-slate-700 hover:bg-slate-600 text-slate-100 px-6 py-2 rounded-lg font-semibold transition border border-slate-600">Documents</Link>
+            <Link href="/" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Home</Link>
+            <Link href="/paintings" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Paintings</Link>
+            <Link href="/cars" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Cars</Link>
+            <Link href="/statues" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Statues</Link>
+            <Link href="/documents" className="inline-block bg-purple-900 hover:bg-purple-800 text-amber-100 px-6 py-2 rounded-lg font-semibold transition border border-amber-600/50 shadow-[0_0_10px_rgba(251,191,36,0.3)]">Documents</Link>
           </div>
         </div>
         <style jsx>{`
