@@ -53,13 +53,13 @@ export default function CarsPage() {
   useEffect(() => {
     if (pieces.length === 0) return;
     const timeout = setTimeout(() => {
-      advance(1, "ltr", "auto");
+      advance(1, "rtl", "auto");
     }, 8000);
     return () => clearTimeout(timeout);
   }, [currentIndex, pieces.length, advance]);
 
-  const handlePrev = useCallback(() => advance(-1, "rtl", "manual"), [advance]);
-  const handleNext = useCallback(() => advance(1, "ltr", "manual"), [advance]);
+  const handlePrev = useCallback(() => advance(-1, "ltr", "manual"), [advance]);
+  const handleNext = useCallback(() => advance(1, "rtl", "manual"), [advance]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -205,6 +205,7 @@ export default function CarsPage() {
           .slide-cycle.ltr.manual { animation: slideInLtr 0.6s ease-in-out both; }
           .slide-cycle.rtl.manual { animation: slideInRtl 0.6s ease-in-out both; }
           .slide-cycle.ltr.auto { animation: slideCycleLtr 8s ease-in-out both; }
+          .slide-cycle.rtl.auto { animation: slideCycleRtl 8s ease-in-out both; }
           .slide-exit.ltr { animation: slideExitLtr 0.6s ease-in-out both; }
           .slide-exit.rtl { animation: slideExitRtl 0.6s ease-in-out both; }
           .desc-transition.ltr.manual { animation: descInLtr 0.6s ease-in-out both; }
@@ -220,6 +221,7 @@ export default function CarsPage() {
           @keyframes descExitLtr { 0% { opacity: 1; filter: blur(0px); transform: translateX(0); } 100% { opacity: 0; filter: blur(8px); transform: translateX(24px); } }
           @keyframes descExitRtl { 0% { opacity: 1; filter: blur(0px); transform: translateX(0); } 100% { opacity: 0; filter: blur(8px); transform: translateX(-24px); } }
           @keyframes slideCycleLtr { 0% { opacity: 0; transform: translateX(-48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(48px); } }
+          @keyframes slideCycleRtl { 0% { opacity: 0; transform: translateX(48px); } 18% { opacity: 1; transform: translateX(0); } 72% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-48px); } }
         `}</style>
       </div>
     </div>
