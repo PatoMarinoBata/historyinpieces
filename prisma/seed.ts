@@ -34,7 +34,7 @@ async function main() {
         title: "Mona Lisa",
         description: "A portrait by Leonardo da Vinci, arguably the most famous painting in the world.",
         history: "Painted between 1503 and 1506. Acquired by King Francis I and later moved to the Louvre.",
-        images: ["https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=800"],
+        images: ["/images/mona-lisa.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1517-01-01", owner: "King Francis I of France" },
@@ -45,7 +45,7 @@ async function main() {
         title: "The Starry Night",
         description: "An oil-on-canvas painting by Vincent van Gogh.",
         history: "Painted in June 1889, depicting the view from his asylum room in Saint-Rémy-de-Provence.",
-        images: ["https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800"],
+        images: ["/images/starry-night.jpg"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1941-01-01", owner: "Museum of Modern Art, New York" }
@@ -55,7 +55,7 @@ async function main() {
         title: "Girl with a Pearl Earring",
         description: "Oil painting by Dutch Golden Age painter Johannes Vermeer.",
         history: "Created around 1665, often referred to as 'the Mona Lisa of the North'. Housed in the Mauritshuis museum.",
-        images: ["https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=800"],
+        images: ["https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1902-01-01", owner: "Mauritshuis, The Hague" }
@@ -65,7 +65,7 @@ async function main() {
         title: "The Last Supper",
         description: "Mural painting by Leonardo da Vinci depicting Jesus's final meal with his apostles.",
         history: "Painted between 1495-1498 on the wall of Santa Maria delle Grazie in Milan. One of the most recognized works in Western art.",
-        images: ["https://images.unsplash.com/photo-1578926288433-e2045b8e2f16?w=800"],
+        images: ["https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=800"],
         category: "PAINTING",
         transactionHistory: [
           { date: "1498-01-01", owner: "Santa Maria delle Grazie, Milan" }
@@ -75,7 +75,7 @@ async function main() {
         title: "The Scream",
         description: "Iconic painting by Norwegian artist Edvard Munch.",
         history: "Created in 1893, expressing existential angst. Four versions exist - pastel and oil paintings.",
-        images: ["https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800"],
+        images: ["https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800"],
         category: "PAINTING",
         lastSoldPrice: 119900000,
         lastSoldDate: new Date("2012-05-02"),
@@ -156,7 +156,7 @@ async function main() {
         title: "David by Michelangelo",
         description: "Renaissance sculpture created between 1501 and 1504.",
         history: "Marble statue depicting the Biblical hero David. Originally placed in Florence's Piazza della Signoria.",
-        images: ["https://images.unsplash.com/photo-1566733448851-4d8f3f26201e?w=800"],
+        images: ["/images/david.jpg"],
         category: "STATUE",
         transactionHistory: [
           { date: "1504-01-01", owner: "Republic of Florence" },
@@ -167,7 +167,7 @@ async function main() {
         title: "Statue of Liberty",
         description: "A colossal neoclassical sculpture on Liberty Island in New York Harbor.",
         history: "Designed by Frédéric Auguste Bartholdi. A gift from France to the United States, dedicated in 1886.",
-        images: ["https://images.unsplash.com/photo-1542300042-5aed2dbf6c05?w=800"],
+        images: ["/images/statue-liberty.jpg"],
         category: "STATUE",
         transactionHistory: [
           { date: "1886-10-28", owner: "United States of America" }
@@ -177,7 +177,7 @@ async function main() {
         title: "The Thinker by Auguste Rodin",
         description: "Bronze sculpture depicting a nude male figure deep in thought.",
         history: "Originally created in 1880 as part of The Gates of Hell. Over 20 castings exist worldwide.",
-        images: ["https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800"],
+        images: ["https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=800"],
         category: "STATUE",
         transactionHistory: [
           { date: "1880-01-01", owner: "Auguste Rodin" },
@@ -188,7 +188,7 @@ async function main() {
         title: "Venus de Milo",
         description: "Ancient Greek marble statue believed to depict Aphrodite.",
         history: "Created between 130-100 BC, discovered in 1820 on the island of Milos. Famous for missing arms.",
-        images: ["https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=800"],
+        images: ["https://images.unsplash.com/photo-1564136456314-00d6f8c46d21?w=800"],
         category: "STATUE",
         transactionHistory: [
           { date: "1820-04-08", owner: "France" },
