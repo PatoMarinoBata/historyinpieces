@@ -129,7 +129,7 @@ async function main() {
         title: "1955 Mercedes-Benz 300 SL Gullwing",
         description: "Revolutionary sports car with distinctive upward-opening doors.",
         history: "First production car with fuel injection. Nicknamed 'Gullwing' for its unique door design.",
-        images: ["https://images.unsplash.com/photo-1617531653520-bd466656a5d1?w=800"],
+        images: ["https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800"],
         category: "CAR",
         lastSoldPrice: 1900000,
         lastSoldDate: new Date("2020-01-15"),
@@ -188,7 +188,7 @@ async function main() {
         title: "Venus de Milo",
         description: "Ancient Greek marble statue believed to depict Aphrodite.",
         history: "Created between 130-100 BC, discovered in 1820 on the island of Milos. Famous for missing arms.",
-        images: ["https://images.unsplash.com/photo-1564136456314-00d6f8c46d21?w=800"],
+        images: ["https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=800"],
         category: "STATUE",
         transactionHistory: [
           { date: "1820-04-08", owner: "France" },
